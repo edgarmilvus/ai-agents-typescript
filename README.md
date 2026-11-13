@@ -99,6 +99,56 @@ export OPENAI_COMPATIBLE_API_KEY=your-key
 The key is the only variable a normal live run needs. Change the base URL and
 model only to point at another OpenAI-compatible endpoint.
 
+## Windows and PowerShell
+
+The TypeScript code is portable; `run_offline.sh` and `run_everything.sh` are POSIX shell scripts, so Windows has three workable setups.
+
+**WSL 2 (recommended).** Install Node 24 inside the Linux distribution, then work from the mounted repository:
+
+```bash
+cd /mnt/c/Users/YOU/ai-agents-typescript
+./run_offline.sh
+```
+
+**Git Bash.** Install Git for Windows, put Node on `PATH`, open Git Bash in the repository, and run the same commands as on macOS or Linux.
+
+**PowerShell directly, without the `.sh` scripts.** Every script is a convenience around `node`. Run programs and harnesses directly:
+
+```powershell
+cd $HOME\ai-agents-typescript
+node chapter1\files\01_the_loop.ts
+node chapter1\files\run_ex1.ts
+node chapter1\files\exercises\run_exercises.ts
+```
+
+Every harness in the repository:
+
+```powershell
+Get-ChildItem chapter*\files\run_ex*.ts, chapter*\files\exercises\run_exercises.ts |
+  ForEach-Object { node $_.FullName }
+```
+
+PowerShell environment variables use a different syntax:
+
+```powershell
+$env:OPENAI_COMPATIBLE_API_KEY = "your-key"
+$env:OPENAI_COMPATIBLE_BASE_URL = "https://openrouter.ai/api/v1"
+$env:OPENAI_COMPATIBLE_MODEL = "~deepseek/deepseek-flash-latest"
+```
+
+Copying and removing a live copy:
+
+```powershell
+Copy-Item -Recurse ai-agents-typescript ai-agents-typescript-live
+Remove-Item -Recurse -Force ai-agents-typescript-live
+```
+
+`run_everything.sh` is destructive by design; run it on a copy, never on the copy you keep. If a script reports `Permission denied` under WSL or Git Bash, make it executable once:
+
+```bash
+chmod +x run_offline.sh run_everything.sh
+```
+
 ## What is where
 
 ```text
@@ -110,7 +160,7 @@ chapter1/ … chapter20/
   spec.yaml              the chapter's contract and gate strings
 fixtures/                recorded model turns shared by the early chapters
 lib/                     the OpenAI-compatible adapter and record/replay helper
-run_offline.sh               the offline runner described above
+run_offline.sh            the offline runner described above
 run_everything.sh        the live pass described above
 ```
 
@@ -121,28 +171,30 @@ no package graph to install.
 
 ## The twenty chapters
 
+Each chapter number and title links to its directory in this repository.
+
 | # | title | what the code shows |
 | --- | --- | --- |
-| 1 | The Loop, the State, the Tool Surface | the agent loop, a tool registry, replay |
-| 2 | Contracts — Schemas, Descriptions and the Repair Loop | schema validation and repair |
-| 3 | The Protocol Boundary — Discovering, Scoping and Surviving MCP Tools | an MCP client and server |
-| 4 | Recordings — Making a Test Mean Something | recording, replay, divergence |
-| 5 | Grading — What "Right" Means When the Model Varies | rubrics and graders |
-| 6 | Statistics — How Often, and How Much of That Number Is Noise | intervals and streaks |
-| 7 | The Judge Is a Model — Auditing Renders When the Grader Has a Variance | model judges, audits |
-| 8 | Which Part Moved — Attributing a Failed Run to the Component That Caused It | run attribution and traces |
-| 9 | Who Tests the Tests — Mutation, Survivors and a Gate That Can Fail | mutation testing |
-| 10 | The Traffic You Did Not Write — Shadow Runs, Drift and a Canary That Rolls Back | shadow traffic, drift, canary |
-| 11 | The Handoff — What Crosses the Seam When One Agent Calls Another | agent-to-agent handoff |
-| 12 | The Tool Is an Attack Surface — Injections, Taint and the Policy at the Boundary | taint tracking and policy |
-| 13 | The Human Boundary — Approvals, Durable Runs and Doing It Exactly Once | approvals, durable runs |
-| 14 | What the Agent Keeps — Memory, Retrieval and the Cost of Remembering | memory and retrieval |
-| 15 | The Budget Is a Design Constraint — Routing, Caching and What the Loop Costs | routing, caching, budgets |
-| 16 | The Loop That Does Not Close — Incidents, Fixtures and Continuous Evaluation | incidents, fixtures, the book's ledger |
-| 17 | One Agent, Many Customers — Tenancy and the Leak You Cannot See | tenant ids, scoped stores, probes |
-| 18 | The Customer Who Left — Deletion and the Data That Outlives It | lineage, closures, tombstones |
-| 19 | The Customer Who Hung Up — Streaming, Cancellation and the Cost of Silence | signal propagation, partial billing |
-| 20 | The Model That Changed Underneath — Portability and the Contract at the Boundary | ports, adapters, conformance |
+| [1](chapter1/) | [The Loop, the State, the Tool Surface](chapter1/) | the agent loop, a tool registry, replay |
+| [2](chapter2/) | [Contracts — Schemas, Descriptions and the Repair Loop](chapter2/) | schema validation and repair |
+| [3](chapter3/) | [The Protocol Boundary — Discovering, Scoping and Surviving MCP Tools](chapter3/) | an MCP client and server |
+| [4](chapter4/) | [Recordings — Making a Test Mean Something](chapter4/) | recording, replay, divergence |
+| [5](chapter5/) | [Grading — What "Right" Means When the Model Varies](chapter5/) | rubrics and graders |
+| [6](chapter6/) | [Statistics — How Often, and How Much of That Number Is Noise](chapter6/) | intervals and streaks |
+| [7](chapter7/) | [The Judge Is a Model — Auditing Renders When the Grader Has a Variance](chapter7/) | model judges, audits |
+| [8](chapter8/) | [Which Part Moved — Attributing a Failed Run to the Component That Caused It](chapter8/) | run attribution and traces |
+| [9](chapter9/) | [Who Tests the Tests — Mutation, Survivors and a Gate That Can Fail](chapter9/) | mutation testing |
+| [10](chapter10/) | [The Traffic You Did Not Write — Shadow Runs, Drift and a Canary That Rolls Back](chapter10/) | shadow traffic, drift, canary |
+| [11](chapter11/) | [The Handoff — What Crosses the Seam When One Agent Calls Another](chapter11/) | agent-to-agent handoff |
+| [12](chapter12/) | [The Tool Is an Attack Surface — Injections, Taint and the Policy at the Boundary](chapter12/) | taint tracking and policy |
+| [13](chapter13/) | [The Human Boundary — Approvals, Durable Runs and Doing It Exactly Once](chapter13/) | approvals, durable runs |
+| [14](chapter14/) | [What the Agent Keeps — Memory, Retrieval and the Cost of Remembering](chapter14/) | memory and retrieval |
+| [15](chapter15/) | [The Budget Is a Design Constraint — Routing, Caching and What the Loop Costs](chapter15/) | routing, caching, budgets |
+| [16](chapter16/) | [The Loop That Does Not Close — Incidents, Fixtures and Continuous Evaluation](chapter16/) | incidents, fixtures, the book's ledger |
+| [17](chapter17/) | [One Agent, Many Customers — Tenancy and the Leak You Cannot See](chapter17/) | tenant ids, scoped stores, probes |
+| [18](chapter18/) | [The Customer Who Left — Deletion and the Data That Outlives It](chapter18/) | lineage, closures, tombstones |
+| [19](chapter19/) | [The Customer Who Hung Up — Streaming, Cancellation and the Cost of Silence](chapter19/) | signal propagation, partial billing |
+| [20](chapter20/) | [The Model That Changed Underneath — Portability and the Contract at the Boundary](chapter20/) | ports, adapters, conformance |
 
 ## A note on the numbers
 
