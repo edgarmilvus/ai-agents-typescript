@@ -1,0 +1,68 @@
+book: "AI Agents in TypeScript"
+chapter: 20
+title: "The Model That Changed Underneath — Portability and the Contract at the Boundary"
+
+invariant: >
+  A model is an implementation detail of one boundary: if the agent's contract —
+  tools, finish reasons, errors, usage, capabilities — changes when the provider
+  does, the model was never behind a boundary at all.
+
+artifacts:
+  - chapter20/port.ts                      # the normalized event, the port, the errors
+  - chapter20/adapters.ts                  # alpha, beta and a model without tools
+  - chapter20/agent.ts                     # three builds of one agent
+  - chapter20/probes.ts                    # nine behaviours a migration can break
+  - chapter20/files/01_one_switch.ts       # the same task, two providers
+  - chapter20/files/02_both.ts             # what each build passes on each provider
+  - chapter20/files/03_matrix.ts           # the migration matrix
+  - chapter20/files/04_errors.ts           # a rate limit is not a string
+  - chapter20/files/05_capability.ts       # the model that cannot call tools
+  - chapter20/files/06_conformance.ts      # the suite as a gate
+  - chapter20/files/run_ex20.ts            # assertions
+  - chapter20/files/exercises/*.ts         # five exercises + runner
+  - chapter20/images/*.png                 # boundary, matrix, errors, capability
+
+structure:
+  - Theoretical Foundations
+  - Basic Code Example
+  - Common Pitfalls
+  - Advanced Application Implementation
+  - How to run it
+  - Reading a Transcript
+  - Practical Exercises
+  - Solutions to the exercises
+  - What this chapter established
+
+multi_file_exercise:
+  id: ex3
+  title: "A port, an adapter and a conformance run"
+  files: [ex3_port.ts, ex3_adapter.ts, ex3_run.ts]
+  why: >
+    ex3_port.ts is pure: raw events in, normalized events out, with no model and
+    no agent. ex3_adapter.ts owns the wire: it produces raw events for a provider
+    and declares what it can do. ex3_run.ts is the wiring and the table. The
+    normalization can be tested with three events, which is the seam.
+
+gates:
+  harness: "node chapter20/files/run_ex20.ts"
+  harness_expected: "37/37 checks passed"
+  exercises: "node chapter20/files/exercises/run_exercises.ts"
+  exercises_expected: "28/28 exercise checks passed"
+  listings: "python3 tools/check_listings.py chapter20"
+  words: "python3 tools/check_words.py chapter20"
+
+words: { target: 17000, floor: 10900, actual: 16954 }
+listing_count: 18
+figure_count: 4
+
+exercises:
+  - id: ex1
+    title: "Normalize three events"
+  - id: ex2
+    title: "Errors with a vocabulary"
+  - id: ex3
+    title: "A port, an adapter and a conformance run"
+  - id: ex4
+    title: "Two models, one suite"
+  - id: ex5
+    title: "The capability check"

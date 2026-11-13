@@ -1,0 +1,8 @@
+[
+  {
+    "text": ""
+  },
+  {
+    "text": "{\"verdict\":\"fail\",\"defects\":[\"low_contrast\"],\"evidence\":\"The Total row shows $111.78, matching $103.50 + $0.00 + $8.28, but it is rendered in a very pale color nearly identical to the background.\",\"confidence\":0.99}"
+  }
+]

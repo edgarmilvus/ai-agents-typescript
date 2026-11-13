@@ -1,0 +1,67 @@
+book: "AI Agents in TypeScript"
+chapter: 18
+title: "The Customer Who Left — Deletion and the Data That Outlives It"
+
+invariant: >
+  A deletion is a property of the derivation graph, not of the row: data you
+  cannot trace you cannot delete, and a purge that cannot show its residue is a
+  promise rather than a proof.
+
+artifacts:
+  - chapter18/world.ts                     # artefacts, lineage edges, the scan
+  - chapter18/purge.ts                     # naive, graph and verified deletion
+  - chapter18/probes.ts                    # nine copies that survive a row delete
+  - chapter18/files/01_one_copy.ts         # a success, and a summary that remains
+  - chapter18/files/02_closure.ts          # the walk that finds seven of nine
+  - chapter18/files/03_modes.ts            # the matrix
+  - chapter18/files/04_tombstone.ts        # a record that is not a copy
+  - chapter18/files/05_residue.ts          # the backup the scan finds
+  - chapter18/files/06_derive.ts           # the edge you did not write
+  - chapter18/files/run_ex18.ts            # assertions
+  - chapter18/files/exercises/*.ts         # five exercises + runner
+  - chapter18/images/*.png                 # lineage, matrix, tombstone, residue
+
+structure:
+  - Theoretical Foundations
+  - Basic Code Example
+  - Common Pitfalls
+  - Advanced Application Implementation
+  - How to run it
+  - Reading a Transcript
+  - Practical Exercises
+  - Solutions to the exercises
+  - What this chapter established
+
+multi_file_exercise:
+  id: ex3
+  title: "A closure, a purge and a table"
+  files: [ex3_graph.ts, ex3_purge.ts, ex3_run.ts]
+  why: >
+    ex3_graph.ts is pure: nodes and edges in, a closure out, with no stores and
+    no tenant. ex3_purge.ts owns the effect: it deletes a set and reports what
+    survived. ex3_run.ts is the wiring and the table. The closure can be tested
+    with three nodes, which is the seam.
+
+gates:
+  harness: "node chapter18/files/run_ex18.ts"
+  harness_expected: "51/51 checks passed"
+  exercises: "node chapter18/files/exercises/run_exercises.ts"
+  exercises_expected: "37/37 exercise checks passed"
+  listings: "python3 tools/check_listings.py chapter18"
+  words: "python3 tools/check_words.py chapter18"
+
+words: { target: 17000, floor: 10900, actual: 17458 }
+listing_count: 17
+figure_count: 4
+
+exercises:
+  - id: ex1
+    title: "The walk"
+  - id: ex2
+    title: "A record, not a copy"
+  - id: ex3
+    title: "A closure, a purge and a table"
+  - id: ex4
+    title: "The residue you can find"
+  - id: ex5
+    title: "A deletion with a status"

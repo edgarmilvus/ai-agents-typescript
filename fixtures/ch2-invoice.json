@@ -1,0 +1,92 @@
+[
+  {
+    "toolCalls": [
+      {
+        "id": "g1_0",
+        "name": "lookup_vendor",
+        "args": {
+          "name": "Helio Optics"
+        },
+        "raw": {
+          "functionCall": {
+            "name": "lookup_vendor",
+            "args": {
+              "name": "Helio Optics"
+            },
+            "id": "call_343500"
+          },
+          "thoughtSignature": "EmAKXgFpFH0TeQH7O5+X7hfOwsbRVu95qEFseYHrWKfgqQhmnnpsVNNAGsIU2pMlx1l3kyeemtZmECM1POxqmOXsWwWu2xapuS6P4Vdbcyu0FF9sBslMmGzB9GcYw6O7hu8="
+        }
+      }
+    ]
+  },
+  {
+    "toolCalls": [
+      {
+        "id": "g2_0",
+        "name": "create_invoice",
+        "args": {
+          "vendorId": "v_helio",
+          "lines": [
+            {
+              "sku": "OPT-1042",
+              "unitPrice": 149.5,
+              "description": "OPT-1042 objective lens",
+              "quantity": 2
+            }
+          ],
+          "number": "2031",
+          "issued": "2025-05-02",
+          "currency": "EUR"
+        },
+        "raw": {
+          "functionCall": {
+            "name": "create_invoice",
+            "args": {
+              "vendorId": "v_helio",
+              "lines": [
+                {
+                  "sku": "OPT-1042",
+                  "unitPrice": 149.5,
+                  "description": "OPT-1042 objective lens",
+                  "quantity": 2
+                }
+              ],
+              "number": "2031",
+              "issued": "2025-05-02",
+              "currency": "EUR"
+            },
+            "id": "call_178143"
+          },
+          "thoughtSignature": "EmAKXgFpFH0THIb4X8Sr8eyjp1QOwqhJWuLAEqjN+N6uCnnMFsl/+rk2iHJVv96WnC3e1a863prk964NMDhljeVCNxynNn5Dg7GXgKFqvEea01V7wKlwGBZDBBWqUBFuTm4="
+        }
+      }
+    ]
+  },
+  {
+    "toolCalls": [
+      {
+        "id": "g3_0",
+        "name": "approve_invoice",
+        "args": {
+          "invoiceId": "inv_1",
+          "approver": "Accounts Assistant"
+        },
+        "raw": {
+          "functionCall": {
+            "name": "approve_invoice",
+            "args": {
+              "invoiceId": "inv_1",
+              "approver": "Accounts Assistant"
+            },
+            "id": "call_208942"
+          },
+          "thoughtSignature": "EmAKXgFpFH0T++GU1II1jFFHja8/L9+iNXuDEzHnQd+1X4oYqtA5FQQgI6c1fNajpPuBL39RmsNfqT0mbWHgMEeEAJSpB16oDrNL1fudjsy2bHzI5jbsUQNFQCnwBZaVbKM="
+        }
+      }
+    ]
+  },
+  {
+    "text": "The invoice from Helio Optics (number 2031) for two OPT-1042 objective lenses (totaling 299.00 EUR) has been successfully booked (ID: `inv_1`) and approved, as the vendor is trusted and the amount is within policy limits."
+  }
+]

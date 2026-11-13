@@ -1,0 +1,75 @@
+book: "AI Agents in TypeScript"
+chapter: 8
+title: "Which Part Moved — Attributing a Failed Run to the Component That Caused It"
+
+invariant: >
+  A failed run does not contain its cause; the cause is the component whose
+  restoration, and only whose restoration, turns the run green.
+
+artifacts:
+  - chapter8/trace.ts                     # the tape, divergence, field diff, load/save
+  - chapter8/desk.ts                      # the refund desk, six axes, restore, runtime
+  - chapter8/attribute.ts                 # suspects, probes, verdicts
+  - chapter8/planted.ts                   # seven failures whose cause is known
+  - chapter8/runs/t1.json                 # live: inside policy, refund
+  - chapter8/runs/t2.json                 # live: outside policy, escalate
+  - chapter8/runs/t3a.json                # live: escalated-on-instruction, first run
+  - chapter8/runs/t3b.json                # live: same task again
+  - chapter8/files/00_record.ts           # records the four traces
+  - chapter8/files/01_one_swap.ts         # one failure, one restore
+  - chapter8/files/02_axes.ts             # one failure, every axis probed
+  - chapter8/files/03_upstream.ts         # the context swap a tape cannot test
+  - chapter8/files/04_corpus.ts           # seven cases against the truth
+  - chapter8/files/05_repair.ts           # the minimal repair set
+  - chapter8/files/06_field.ts            # axis -> call -> field
+  - chapter8/files/run_ex8.ts             # assertions
+  - chapter8/files/exercises/*.ts         # five exercises + runner
+  - chapter8/images/axes.png              # the six axes, split at the decisions
+  - chapter8/images/replay.png            # the tape re-executed against a release
+  - chapter8/images/verdict.png           # the probe tree
+  - chapter8/images/drill.png             # axis -> call -> field
+
+structure:
+  - Theoretical Foundations
+  - Basic Code Example
+  - Common Pitfalls
+  - Advanced Application Implementation
+  - How to run it
+  - Reading a Transcript
+  - Practical Exercises
+  - Solutions to the exercises
+  - What this chapter established
+
+multi_file_exercise:
+  id: ex3
+  title: "A verdict for seven failures"
+  files: [ex3_cases.ts, ex3_engine.ts, ex3_run.ts]
+  why: >
+    ex3_cases.ts is pure data and shape (no replay, no desk), ex3_engine.ts
+    performs the probes and knows nothing about the corpus, and ex3_run.ts is
+    the wiring that joins them and prints. The engine can be tested with a
+    table of outcomes, which is the seam a real suite needs.
+
+gates:
+  harness: "node chapter8/files/run_ex8.ts"
+  harness_expected: "62/62 checks passed"
+  exercises: "node chapter8/files/exercises/run_exercises.ts"
+  exercises_expected: "44/44 exercise checks passed"
+  listings: "python3 tools/check_listings.py chapter8"
+  words: "python3 tools/check_words.py chapter8"
+
+words: { target: 17000, floor: 10900, actual: 22977 }
+listing_count: 18
+figure_count: 4
+
+exercises:
+  - id: ex1
+    title: "Necessary, sufficient, neither"
+  - id: ex2
+    title: "The first difference, and the field behind it"
+  - id: ex3
+    title: "A verdict for seven failures"
+  - id: ex4
+    title: "The upstream test is a sample"
+  - id: ex5
+    title: "What attribution costs"

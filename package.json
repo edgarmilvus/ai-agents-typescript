@@ -1,0 +1,17 @@
+{
+  "name": "ai-agents-in-typescript-code",
+  "version": "1.0.0",
+  "private": true,
+  "description": "The runnable code for AI Agents in TypeScript: twenty chapters, no dependencies, recorded model runs.",
+  "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "test": "./run_offline.sh",
+    "check": "./run_offline.sh --no-demos",
+    "demos": "./run_offline.sh --demos"
+  },
+  "license": "MIT",
+  "author": "Edgar Milvus"
+}

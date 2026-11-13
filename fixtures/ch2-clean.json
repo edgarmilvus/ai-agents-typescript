@@ -1,0 +1,81 @@
+[
+  {
+    "text": "I'll start by looking up the vendor to get the required ID and check its trust status.",
+    "toolCalls": [
+      {
+        "id": "call-aa036947-3128-4f8a-94f8-9333679de678",
+        "name": "lookup_vendor",
+        "args": {
+          "name": "Helio Optics"
+        },
+        "raw": {
+          "type": "function",
+          "index": 0,
+          "id": "call-aa036947-3128-4f8a-94f8-9333679de678",
+          "function": {
+            "name": "lookup_vendor",
+            "arguments": "{\"name\":\"Helio Optics\"}"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "text": "Vendor found and trusted. Now creating the draft invoice.",
+    "toolCalls": [
+      {
+        "id": "call-27dd12ea-0d96-4853-a666-d036b6ec2d01",
+        "name": "create_invoice",
+        "args": {
+          "vendorId": "v_helio",
+          "number": "2031",
+          "issued": "2025-01-01",
+          "currency": "EUR",
+          "lines": [
+            {
+              "sku": "OPT-1042",
+              "description": "Objective lens",
+              "quantity": 2,
+              "unitPrice": 149.5
+            }
+          ],
+          "notes": "Paper invoice; issue date not stated on the document, placeholder date used."
+        },
+        "raw": {
+          "type": "function",
+          "index": 0,
+          "id": "call-27dd12ea-0d96-4853-a666-d036b6ec2d01",
+          "function": {
+            "name": "create_invoice",
+            "arguments": "{\"vendorId\":\"v_helio\",\"number\":\"2031\",\"issued\":\"2025-01-01\",\"currency\":\"EUR\",\"lines\":[{\"sku\":\"OPT-1042\",\"description\":\"Objective lens\",\"quantity\":2,\"unitPrice\":149.5}],\"notes\":\"Paper invoice; issue date not stated on the document, placeholder date used.\"}"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "text": "Draft created (total €299.00, VAT €56.81). Now attempting approval.",
+    "toolCalls": [
+      {
+        "id": "call-ffb6a288-092b-4ad2-8b2c-c7083e070d09",
+        "name": "approve_invoice",
+        "args": {
+          "invoiceId": "inv_1",
+          "approver": "finance-bot"
+        },
+        "raw": {
+          "type": "function",
+          "index": 0,
+          "id": "call-ffb6a288-092b-4ad2-8b2c-c7083e070d09",
+          "function": {
+            "name": "approve_invoice",
+            "arguments": "{\"invoiceId\":\"inv_1\",\"approver\":\"finance-bot\"}"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "text": "Done — booked and approved.\n\n**Invoice inv_1 — Helio Optics, invoice 2031**\n- Vendor: Helio Optics (v_helio), Germany, VAT 19%, trusted for automatic approval\n- Line: 2 × OPT-1042 objective lens @ €149.50\n- Net €299.00, VAT €56.81, total **€299.00 EUR**\n- Status: **approved** by finance-bot\n\nPolicy check passed on both counts: the vendor is trusted, and the total is within the automatic approval ceiling, so no human review was needed.\n\nOne thing to flag for your records: the paper invoice didn't state an issue date, and the tool requires one, so I used a placeholder of 2025-01-01 and noted that in the invoice notes. If the actual issue date matters for your books (e.g. period cut-off), it's worth correcting before payment runs."
+  }
+]

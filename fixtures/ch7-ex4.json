@@ -1,0 +1,26 @@
+[
+  {
+    "text": "```json\n{\"verdict\":\"fail\",\"defects\":[\"missing_total\"],\"evidence\":\"The receipt lists Subtotal ($78.00), Shipping ($0.00), and Tax ($3.90), but omits a final Total row altogether.\",\"confidence\":1.0}\n```"
+  },
+  {
+    "text": "```json\n{\"verdict\":\"fail\",\"defects\":[\"missing_total\"],\"evidence\":\"The receipt lists subtotal $78.00, shipping $0.00, and tax $3.90, but has no Total row at all.\",\"confidence\":1.0}\n```"
+  },
+  {
+    "text": "```json\n{\"verdict\":\"fail\",\"defects\":[\"truncated_amount\"],\"evidence\":\"The total amount is cut off at the right edge, showing only '$3' instead of the full amount.\",\"confidence\":0.95}\n```"
+  },
+  {
+    "text": "```json\n{\"verdict\":\"fail\",\"defects\":[\"truncated_amount\"],\"evidence\":\"The total amount is cut off by the right edge, showing only '$3' instead of the full amount calculated from Subtotal $22.49, Shipping $5.95, and Tax $2.56 ($31.00).\",\"confidence\":0.95}\n```"
+  },
+  {
+    "text": "```json\n{\"verdict\":\"fail\",\"defects\":[\"overlap\"],\"evidence\":\"The word Total and amount $57.37 overlap with multiple colliding text layers on the same baseline.\",\"confidence\":1.0}\n```"
+  },
+  {
+    "text": "```json\n{\"verdict\":\"fail\",\"defects\":[\"overlap\"],\"evidence\":\"The total label and amount rows collide with each other, showing overlapping text for 'Total' and '$57.50' (with overlapping figures like $57377).\",\"confidence\":0.95}\n```"
+  },
+  {
+    "text": "```json\n{\"verdict\":\"fail\",\"defects\":[\"total_mismatch\"],\"evidence\":\"The printed Total is $171.00, but Subtotal $171.00 plus Shipping $0.00 plus Tax $14.11 equals $185.11.\",\"confidence\":1.0}\n```"
+  },
+  {
+    "text": "```json\n{\"verdict\":\"fail\",\"defects\":[\"total_mismatch\"],\"evidence\":\"The printed Total of $171.00 does not match the sum of Subtotal ($171.00), Shipping ($0.00), and Tax ($14.11), which should be $185.11.\",\"confidence\":1.0}\n```"
+  }
+]

@@ -1,0 +1,68 @@
+{
+ "id": "t2",
+ "task": "A customer says order ORD-7801 was delivered three weeks ago and wants the money back. Refund it if the policy allows, otherwise escalate to a human.",
+ "model": "deepseek-v4.1-flash",
+ "axes": {
+  "context": "task-v1",
+  "model": "deepseek-v4.1-flash",
+  "tool": "tool-clean",
+  "world": "ledger-clean",
+  "grader": "check-strict",
+  "harness": "loop-8"
+ },
+ "turns": [
+  {
+   "text": "I'll look up the order and the relevant policy first.",
+   "calls": [
+    {
+     "name": "lookup_order",
+     "args": {
+      "orderId": "ORD-7801"
+     }
+    }
+   ]
+  },
+  {
+   "text": "",
+   "calls": [
+    {
+     "name": "refund_policy",
+     "args": {
+      "region": "EU"
+     }
+    }
+   ]
+  },
+  {
+   "text": "",
+   "calls": [
+    {
+     "name": "escalate",
+     "args": {
+      "orderId": "ORD-7801",
+      "reason": "Customer requests a refund on order ORD-7801 (EUR 640, EU region). Refund is not permitted automatically: the order was delivered 21 days ago, past the EU 14-day refund window, and the EUR 640 total also exceeds the EUR 500 automatic refund ceiling. Escalating for human review of an exception."
+     }
+    }
+   ]
+  },
+  {
+   "text": "I escalated the ticket rather than issuing a refund. Two policy limits block an automatic refund:\n\n- **Delivery window:** The order was delivered **21 days ago**, but the EU policy window is **14 days** \u2014 it's outside the window.\n- **Amount ceiling:** The order total is **\u20ac640**, above the **\u20ac500** automatic refund ceiling.\n\nSince I can't issue the refund within policy, it's now with a human agent for exception review (escalation ID `esc_ord7801`). If you'd like, I can also draft a reply to the customer explaining the situation and that a human will follow up.",
+   "calls": []
+  }
+ ],
+ "results": [
+  "{\"id\":\"ORD-7801\",\"total\":640,\"currency\":\"EUR\",\"deliveredDaysAgo\":21,\"region\":\"EU\"}",
+  "{\"windowDays\":14,\"maxAutoRefund\":500}",
+  "{\"escalationId\":\"esc_ord7801\",\"orderId\":\"ORD-7801\",\"reason\":\"Customer requests a refund on order ORD-7801 (EUR 640, EU region). Refund is not permitted automatically: the order was delivered 21 days ago, past the EU 14-day refund window, and the EUR 640 total also exceeds the EUR 500 automatic refund ceiling. Escalating for human review of an exception.\"}"
+ ],
+ "outcome": {
+  "pass": true,
+  "reason": "outside the 14-day window: expected one escalation, got 0 refund(s) and 1 escalation(s)"
+ },
+ "usage": {
+  "calls": 4,
+  "promptTokens": 2801,
+  "outputTokens": 462
+ },
+ "recordedAt": "2026-10-31T19:15:26.663Z"
+}

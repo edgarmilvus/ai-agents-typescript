@@ -1,0 +1,65 @@
+[
+  {
+    "text": "I'll look up the order and the applicable refund policy.",
+    "toolCalls": [
+      {
+        "id": "call_00_af4mb4ld3wcli4hswmzf9otm",
+        "name": "lookup_order",
+        "args": {
+          "orderId": "ORD-7801"
+        },
+        "raw": {
+          "id": "call_00_af4mb4ld3wcli4hswmzf9otm",
+          "type": "function",
+          "function": {
+            "name": "lookup_order",
+            "arguments": "{\"orderId\": \"ORD-7801\"}"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "toolCalls": [
+      {
+        "id": "call_00_wm69l1f0taulj2bof4grcbfp",
+        "name": "refund_policy",
+        "args": {
+          "region": "EU"
+        },
+        "raw": {
+          "id": "call_00_wm69l1f0taulj2bof4grcbfp",
+          "type": "function",
+          "function": {
+            "name": "refund_policy",
+            "arguments": "{\"region\": \"EU\"}"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "text": "The order falls outside policy on two counts, so I'll escalate rather than refund.",
+    "toolCalls": [
+      {
+        "id": "call_00_1dyyaw1uieii3vrronxfgwp5",
+        "name": "escalate",
+        "args": {
+          "orderId": "ORD-7801",
+          "reason": "Customer requests refund 21 days after delivery, which exceeds the EU refund window of 14 days. Additionally, the order total is EUR 640, above the automatic refund ceiling of EUR 500. Not eligible for automated refund; requires human review."
+        },
+        "raw": {
+          "id": "call_00_1dyyaw1uieii3vrronxfgwp5",
+          "type": "function",
+          "function": {
+            "name": "escalate",
+            "arguments": "{\"orderId\": \"ORD-7801\", \"reason\": \"Customer requests refund 21 days after delivery, which exceeds the EU refund window of 14 days. Additionally, the order total is EUR 640, above the automatic refund ceiling of EUR 500. Not eligible for automated refund; requires human review.\"}"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "text": "I escalated this order to a human rather than refunding it. Here's why:\n\n**Order ORD-7801**\n- Total: €640.00\n- Region: EU\n- Delivered: 21 days ago\n\n**EU refund policy**\n- Window: 14 days\n- Maximum automatic refund: €500\n\nThe request fails both tests:\n\n1. **Outside the window** — the customer is at 21 days, 7 days past the 14-day limit.\n2. **Above the auto-refund ceiling** — €640 exceeds the €500 maximum I can refund automatically.\n\nSince an automatic refund isn't permitted on either ground, I couldn't issue the money back. I've handed it to a human agent with the details written down (escalation `esc_ord7801`).\n\nOne thing worth knowing: because the request is past the window and above the ceiling, a human reviewer may also decline it — but that's their call to make, not something the automated policy allowed me to decide. If the customer has a specific reason for the delay (a defect discovered late, a delivery problem, etc.), it would help to include that in the ticket."
+  }
+]

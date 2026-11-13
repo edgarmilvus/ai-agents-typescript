@@ -1,0 +1,94 @@
+[
+  {
+    "text": "I'll start by opening the documents and the warehouse.",
+    "toolCalls": [
+      {
+        "id": "call_36ca898b27e647fbb5954b26",
+        "name": "docs.open_doc",
+        "args": {
+          "id": "doc_style"
+        },
+        "raw": {
+          "id": "call_36ca898b27e647fbb5954b26",
+          "type": "function",
+          "function": {
+            "name": "docs_open_doc",
+            "arguments": "{\"id\":\"doc_style\"}"
+          }
+        }
+      },
+      {
+        "id": "call_82e75931d5d840259de4607e",
+        "name": "docs.open_doc",
+        "args": {
+          "id": "doc_rates"
+        },
+        "raw": {
+          "id": "call_82e75931d5d840259de4607e",
+          "type": "function",
+          "function": {
+            "name": "docs_open_doc",
+            "arguments": "{\"id\":\"doc_rates\"}"
+          }
+        }
+      },
+      {
+        "id": "call_579c9b8c08214ba080584aeb",
+        "name": "warehouse.open_warehouse",
+        "args": {
+          "warehouse": "berlin-1"
+        },
+        "raw": {
+          "id": "call_579c9b8c08214ba080584aeb",
+          "type": "function",
+          "function": {
+            "name": "warehouse_open_warehouse",
+            "arguments": "{\"warehouse\":\"berlin-1\"}"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "text": "Both docs are open and the warehouse has pick_02. Now let me quote the two carriers.",
+    "toolCalls": [
+      {
+        "id": "call_ca126ad478154363b7025af0",
+        "name": "warehouse.quote_rate",
+        "args": {
+          "carrier": "dhl",
+          "country": "DE",
+          "weightKg": 12
+        },
+        "raw": {
+          "id": "call_ca126ad478154363b7025af0",
+          "type": "function",
+          "function": {
+            "name": "warehouse_quote_rate",
+            "arguments": "{\"carrier\":\"dhl\",\"country\":\"DE\",\"weightKg\":12}"
+          }
+        }
+      },
+      {
+        "id": "call_e6fb714151ed46a28f72ecfe",
+        "name": "warehouse.quote_rate",
+        "args": {
+          "carrier": "gls",
+          "country": "DE",
+          "weightKg": 12
+        },
+        "raw": {
+          "id": "call_e6fb714151ed46a28f72ecfe",
+          "type": "function",
+          "function": {
+            "name": "warehouse_quote_rate",
+            "arguments": "{\"carrier\":\"gls\",\"country\":\"DE\",\"weightKg\":12}"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "text": "I did not book any carrier. Here's the reasoning:\n\n**Policy (doc_style + doc_rates):**\n- Compliant carriers for Germany: DHL and GLS (UPS is NL-only) — both quoted here.\n- A quote is compliant only if **strictly below** the DE cap of **€12.00**.\n- Weight surcharges apply above 20 kg — not relevant at 12 kg (surcharge €0 on both quotes).\n\n**Quotes for pick_02, 12 kg, DE:**\n\n| Carrier | Total | Surcharge | Under €12 cap? |\n|---|---|---|---|\n| GLS | €17.70 | €0 | ❌ No |\n| DHL | €18.90 | €0 | ❌ No |\n\n**Decision:** GLS is the cheapest compliant-carrier option at €17.70, but it is €5.70 **over** the €12.00 DE cap. DHL at €18.90 is also over. Since no quote is strictly below the cap, the policy forbids booking — so **pick_02 remains unbooked**.\n\nNote that the style guide also requires same-day booking; that requirement can't be satisfied for this pickup without an exception. If you can authorize a cap override for this one shipment (or confirm a re-rate at a lower weight/consolidation), I'll book GLS immediately."
+  }
+]

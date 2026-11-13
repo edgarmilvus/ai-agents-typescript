@@ -1,0 +1,85 @@
+{
+  "version": 1,
+  "model": "deepseek-v4.1-flash",
+  "recordedAt": "2026-10-31T19:14:45.362Z",
+  "task": "A customer says the headphones arrived damaged and wants a full refund. Order ORD-7712. Refund it if policy allows.",
+  "taskHash": "77ab1af7256eb968",
+  "turns": [
+    {
+      "inputHash": "fb2838977dfd3051",
+      "reply": {
+        "text": "I'll start by looking up the order and the relevant refund policy.",
+        "toolCalls": [
+          {
+            "id": "call_8c9d7b980cef4284a84b54ad",
+            "name": "lookup_order",
+            "args": {
+              "orderId": "ORD-7712"
+            },
+            "raw": {
+              "id": "call_8c9d7b980cef4284a84b54ad",
+              "type": "function",
+              "function": {
+                "name": "lookup_order",
+                "arguments": "{\"orderId\":\"ORD-7712\"}"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "inputHash": "46bf95339279c5ff",
+      "reply": {
+        "toolCalls": [
+          {
+            "id": "call_827886b536b54e87ac34d920",
+            "name": "refund_policy",
+            "args": {
+              "region": "EU"
+            },
+            "raw": {
+              "id": "call_827886b536b54e87ac34d920",
+              "type": "function",
+              "function": {
+                "name": "refund_policy",
+                "arguments": "{\"region\":\"EU\"}"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "inputHash": "74a17e990518ef2f",
+      "reply": {
+        "text": "Order and policy both check out: delivered 6 days ago (within the EU 14-day window), and €84 is under the €500 automatic ceiling. Processing the full refund.",
+        "toolCalls": [
+          {
+            "id": "call_054f90464f6245d19b593b7f",
+            "name": "issue_refund",
+            "args": {
+              "orderId": "ORD-7712",
+              "amount": 84,
+              "reason": "Headphones arrived damaged; full refund within EU 14-day window"
+            },
+            "raw": {
+              "id": "call_054f90464f6245d19b593b7f",
+              "type": "function",
+              "function": {
+                "name": "issue_refund",
+                "arguments": "{\"orderId\":\"ORD-7712\",\"amount\":84,\"reason\":\"Headphones arrived damaged; full refund within EU 14-day window\"}"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "inputHash": "c228e4f93d6988ad",
+      "reply": {
+        "text": "Done — refund approved and processed.\n\n**Order ORD-7712**\n- Amount refunded: **€84.00** (full order total)\n- Refund ID: `rf_ord7712`\n- Reason: Headphones arrived damaged\n\n**Why it qualified:** The order was delivered 6 days ago, which is inside the EU 14-day refund window, and €84 is well under the €500 automatic refund ceiling — so no human approval was needed.\n\nThe refund should appear on the customer's original payment method. You may want to ask them to keep the damaged item until the return instructions arrive, depending on your carrier's damaged-goods process."
+      }
+    }
+  ]
+}

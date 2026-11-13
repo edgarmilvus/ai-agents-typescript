@@ -1,0 +1,99 @@
+[
+  {
+    "text": "I'll start by opening the warehouse and looking up the pickup.",
+    "toolCalls": [
+      {
+        "id": "call_00_tfuw1sqc69ykwtu5c47aqxi0",
+        "name": "open_warehouse",
+        "args": {
+          "warehouse": "berlin-1"
+        },
+        "raw": {
+          "id": "call_00_tfuw1sqc69ykwtu5c47aqxi0",
+          "type": "function",
+          "function": {
+            "name": "open_warehouse",
+            "arguments": "{\"warehouse\": \"berlin-1\"}"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "toolCalls": [
+      {
+        "id": "call_00_kxd3rcmo9a47mcfbeafkoewg",
+        "name": "search",
+        "args": {
+          "query": "pick_01"
+        },
+        "raw": {
+          "id": "call_00_kxd3rcmo9a47mcfbeafkoewg",
+          "type": "function",
+          "function": {
+            "name": "search",
+            "arguments": "{\"query\": \"pick_01\"}"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "toolCalls": [
+      {
+        "id": "call_00_vfkk99hc3va65b9jwxbftv5c",
+        "name": "quote_rate",
+        "args": {
+          "carrier": "dhl",
+          "country": "DE",
+          "weightKg": 1
+        },
+        "raw": {
+          "id": "call_00_vfkk99hc3va65b9jwxbftv5c",
+          "type": "function",
+          "function": {
+            "name": "quote_rate",
+            "arguments": "{\"carrier\": \"dhl\", \"country\": \"DE\", \"weightKg\": 1}"
+          }
+        }
+      },
+      {
+        "id": "call_01_tchx6icqzongwkqisuuskytg",
+        "name": "quote_rate",
+        "args": {
+          "carrier": "ups",
+          "country": "DE",
+          "weightKg": 1
+        },
+        "raw": {
+          "id": "call_01_tchx6icqzongwkqisuuskytg",
+          "type": "function",
+          "function": {
+            "name": "quote_rate",
+            "arguments": "{\"carrier\": \"ups\", \"country\": \"DE\", \"weightKg\": 1}"
+          }
+        }
+      },
+      {
+        "id": "call_02_ywgsdo9bduy9c12apvna0f2r",
+        "name": "quote_rate",
+        "args": {
+          "carrier": "gls",
+          "country": "DE",
+          "weightKg": 1
+        },
+        "raw": {
+          "id": "call_02_ywgsdo9bduy9c12apvna0f2r",
+          "type": "function",
+          "function": {
+            "name": "quote_rate",
+            "arguments": "{\"carrier\": \"gls\", \"country\": \"DE\", \"weightKg\": 1}"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "text": "I found the quotes, but I have to stop short of booking — here's the situation.\n\n**What I did:**\n- Opened `berlin-1` (pickups: `pick_01`, `pick_02`)\n- Confirmed `pick_01` is assigned to carrier `dhl`\n- Quoted all three carriers\n\n**Quotes (assumptions: DE destination, 1 kg):**\n\n| Carrier | Price | Surcharge |\n|---|---|---|\n| GLS | 5.60 EUR | 0 |\n| DHL | 5.70 EUR | 0 |\n| UPS | 5.85 EUR | 0 |\n\nGLS is cheapest at 5.60 EUR — comfortably under the 10 EUR limit, so the condition to book is satisfied.\n\n**Why I didn't book:** I have no booking tool available in this session. The only tools I have are `open_warehouse`, `search`, and `quote_rate` — there's no \"book\" or \"assign carrier\" action exposed, even with the warehouse open. So I can't complete the write step.\n\n**Two things that need your attention:**\n\n1. **Booking capability is missing.** I need a booking tool to proceed, or someone with it needs to book GLS on `pick_01`.\n\n2. **My quote inputs were guessed.** `pick_01` returned only an id and carrier — no destination country or weight. I used `DE`/1 kg as a stand-in. If the actual shipment is heavier or cross-border, these prices and the ranking could shift (surcharges were 0, suggesting no fuel or remote-area add-ons, which would change on other lanes). Please confirm the real destination and weight, and I'll re-quote before anything gets booked.\n\nOne flag worth noting: `pick_01` is already tagged to `dhl`. The ~0.10 EUR saving from switching to GLS may not be worth breaking an existing carrier assignment — worth a look at why it's pre-assigned before switching."
+  }
+]

@@ -1,0 +1,69 @@
+book: "AI Agents in TypeScript"
+chapter: 7
+title: "The Judge Is a Model — Auditing Renders When the Grader Has a Variance"
+
+invariant: >
+  When the judge is a model, the reported rate is the agent's rate convolved
+  with the judge's accuracy, and only a corpus whose answer key was built before
+  the judge spoke can separate the two.
+
+artifacts:
+  - chapter7/render.ts                          # receipt + defects -> SVG, truth derived
+  - chapter7/corpus.ts                          # eight renders, key from truthOf()
+  - chapter7/audit.ts                           # prompt, image call, strict parser, 3 outcomes
+  - chapter7/agreement.ts                       # matrix, kappa, recall, precision, stability
+  - chapter7/renders/rasterize.sh               # SVG -> PNG at 480x640 and 240x320
+  - chapter7/files/00_renders.ts                # writes the corpus and prints the key
+  - chapter7/files/01_first_audit.ts            # one render, one call
+  - chapter7/files/02_checklist.ts              # one render, two rubrics
+  - chapter7/files/03_retest.ts                 # the same image twice
+  - chapter7/files/04_agreement.ts              # eight audits against the key
+  - chapter7/files/05_two_variance.ts           # the convolution, inverted
+  - chapter7/files/06_scale.ts                  # the same corpus at half size
+  - chapter7/files/run_ex7.ts                   # 44 assertions
+  - chapter7/files/exercises/*.ts               # five exercises + runner (29 assertions)
+  - chapter7/images/*.png                       # pipeline, matrix, file graph, convolution
+
+structure:
+  - Theoretical Foundations
+  - Basic Code Example
+  - Common Pitfalls
+  - Advanced Application Implementation
+  - How to run it
+  - Reading a Transcript
+  - Practical Exercises
+  - Solutions to the exercises
+  - What this chapter established
+
+multi_file_exercise:
+  id: ex3
+  title: "A ledger, not a score"
+  files: [ex3_matrix.ts, ex3_sweep.ts, ex3_agreement.ts]
+  why: >
+    ex3_matrix.ts is pure (truth and verdict pairs in, counts and prices out, no
+    model, no files), ex3_sweep.ts owns the audits and knows nothing about
+    pricing, and the third file is the only one that wires six renders to a cost
+    model. A single-file version cannot be tested without running the agent, and
+    the price would be buried in the loop.
+
+gates:
+  harness: "node chapter7/files/run_ex7.ts"
+  harness_expected: "44/44 checks passed"
+  exercises: "node chapter7/files/exercises/run_exercises.ts"
+  exercises_expected: "29/29 exercise checks passed"
+  listings: "python3 tools/check_listings.py chapter7"
+  words: "python3 tools/check_words.py chapter7"
+
+words: { target: 17000, floor: 10900 }
+
+exercises:
+  - id: ex1
+    title: "A verdict you can count"
+  - id: ex2
+    title: "The prompt cannot recover what the defect removed"
+  - id: ex3
+    title: "A ledger, not a score"
+  - id: ex4
+    title: "The judge's own noise"
+  - id: ex5
+    title: "What the judge costs"

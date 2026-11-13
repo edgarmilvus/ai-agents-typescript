@@ -1,0 +1,50 @@
+{
+  "taskId": "t1-refund",
+  "request": "Refund ORD-7712 for 84 EUR if the policy allows, otherwise escalate it.",
+  "model": "deepseek-v4.1-flash",
+  "answer": "Order ORD-7712 was refunded 84 EUR (reference rf_ord7712) after the clerk confirmed the refund was policy-compliant, so no escalation was needed.",
+  "packets": [
+    {
+      "role": "clerk",
+      "goal": "Look up order ORD-7712 and read the applicable refund policy, then determine whether a refund of 84 EUR for this order is permitted by policy. Report back a verdict of either \"refund\" or \"escalate\", with the specific policy reason and the order facts (customer, amount, date, any eligibility constraints) that the cashier will need.",
+      "facts": {
+        "orderId": "ORD-7712",
+        "amount": 84
+      },
+      "constraints": [
+        "Do not move any money — you cannot refund or escalate",
+        "only read the order and the policy and report a verdict",
+        "base the verdict strictly on the written refund policy"
+      ],
+      "returnSchema": [
+        "verdict",
+        "region"
+      ]
+    },
+    {
+      "role": "cashier",
+      "goal": "Execute the refund for order ORD-7712 in the amount of 84 EUR. The clerk has reviewed the order and the refund policy and reported a verdict of \"refund\" (region: EU), so the refund is policy-compliant. Process the refund now and confirm the resulting status.",
+      "facts": {
+        "orderId": "ORD-7712",
+        "amount": 84,
+        "verdict": "refund"
+      },
+      "constraints": [
+        "Act only on the clerk's reported verdict of \"refund\" — do not re-evaluate policy yourself",
+        "refund exactly 84 EUR, no more and no less",
+        "if the refund cannot be completed for any reason, escalate instead of retrying"
+      ],
+      "returnSchema": [
+        "action",
+        "reference"
+      ]
+    }
+  ],
+  "calls": 3,
+  "usage": {
+    "calls": 3,
+    "promptTokens": 2345,
+    "outputTokens": 710
+  },
+  "recordedAt": "2026-10-31T19:16:04.830Z"
+}

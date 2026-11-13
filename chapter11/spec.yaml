@@ -1,0 +1,76 @@
+book: "AI Agents in TypeScript"
+chapter: 11
+title: "The Handoff — What Crosses the Seam When One Agent Calls Another"
+
+invariant: >
+  A delegated task is only as safe as the contract at the seam: the parent must
+  be able to say what it handed over, what came back, and what it cost, without
+  reading the child's transcript.
+
+artifacts:
+  - chapter11/contract.ts                  # task packet, report, validation, the seam
+  - chapter11/roles.ts                     # two child roles with disjoint tool scopes
+  - chapter11/supervisor.ts                # delegate, depth, fan-out, the record
+  - chapter11/corpus.ts                    # eight tasks and what each one needs
+  - chapter11/runs/s1.json                 # live: supervisor delegates a refund
+  - chapter11/runs/s2.json                 # live: supervisor delegates an escalation
+  - chapter11/runs/s3.json                 # live: a task the supervisor over-delegates
+  - chapter11/files/00_record.ts           # records the three supervisor runs
+  - chapter11/files/01_one_handoff.ts      # one task, three packets
+  - chapter11/files/02_modes.ts            # eight tasks, three modes
+  - chapter11/files/03_live.ts             # what the model put in the packet
+  - chapter11/files/04_depth.ts            # a child that delegates, and the limit
+  - chapter11/files/05_seam.ts             # where the parent's evidence stops
+  - chapter11/files/06_cost.ts             # tokens across the seam
+  - chapter11/files/run_ex11.ts            # assertions
+  - chapter11/files/exercises/*.ts         # five exercises + runner
+  - chapter11/images/seam.png              # packet in, report out
+  - chapter11/images/modes.png             # eight tasks at three fidelities
+  - chapter11/images/depth.png             # the tree, the limit, the budget
+  - chapter11/images/cost.png              # the two paths, priced
+
+structure:
+  - Theoretical Foundations
+  - Basic Code Example
+  - Common Pitfalls
+  - Advanced Application Implementation
+  - How to run it
+  - Reading a Transcript
+  - Practical Exercises
+  - Solutions to the exercises
+  - What this chapter established
+
+multi_file_exercise:
+  id: ex3
+  title: "A packet that carries enough and no more"
+  files: [ex3_packet.ts, ex3_child.ts, ex3_run.ts]
+  why: >
+    ex3_packet.ts is pure: a task and a mode in, a packet out, no tools and no
+    clock. ex3_child.ts owns the effect: it runs a role against a packet and
+    returns a report. ex3_run.ts is the wiring and the table. The packet rules
+    can be tested without running a child, which is the seam the chapter is
+    about.
+
+gates:
+  harness: "node chapter11/files/run_ex11.ts"
+  harness_expected: "67/67 checks passed"
+  exercises: "node chapter11/files/exercises/run_exercises.ts"
+  exercises_expected: "44/44 exercise checks passed"
+  listings: "python3 tools/check_listings.py chapter11"
+  words: "python3 tools/check_words.py chapter11"
+
+words: { target: 17000, floor: 10900, actual: 20125 }
+listing_count: 19
+figure_count: 4
+
+exercises:
+  - id: ex1
+    title: "A report that can be refused"
+  - id: ex2
+    title: "What the packet has to carry"
+  - id: ex3
+    title: "A packet that carries enough and no more"
+  - id: ex4
+    title: "Depth, fan-out and the budget split"
+  - id: ex5
+    title: "What the seam costs"

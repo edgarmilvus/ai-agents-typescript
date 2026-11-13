@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="640" viewBox="0 0 480 640">
+<defs><clipPath id="card"><rect x="0" y="0" width="456" height="640"/></clipPath></defs>
+<rect width="480" height="640" fill="#FDFBF6"/>
+<g clip-path="url(#card)" font-family="Helvetica, Arial, sans-serif">
+<text x="24" y="78" font-size="22" font-weight="700" fill="#14213A">Northwind Supply</text>
+<text x="24" y="108" font-size="13" fill="#6B7280">Order NW-1123</text>
+<text x="24" y="148" font-size="15" font-weight="400" fill="#14213A">Filter</text><text x="456" y="148" font-size="15" font-weight="400" fill="#14213A" text-anchor="end">$19.99</text>
+<text x="24" y="174" font-size="15" font-weight="400" fill="#14213A">Filter</text><text x="456" y="174" font-size="15" font-weight="400" fill="#14213A" text-anchor="end">$19.99</text>
+<line x1="24" y1="208" x2="456" y2="208" stroke="#D9D2C2"/>
+<text x="24" y="236" font-size="15" font-weight="400" fill="#14213A">Subtotal</text><text x="456" y="236" font-size="15" font-weight="400" fill="#14213A" text-anchor="end">$39.98</text>
+<text x="24" y="262" font-size="15" font-weight="400" fill="#14213A">Shipping</text><text x="456" y="262" font-size="15" font-weight="400" fill="#14213A" text-anchor="end">$7.50</text>
+<text x="24" y="288" font-size="15" font-weight="400" fill="#14213A">Tax</text><text x="456" y="288" font-size="15" font-weight="400" fill="#14213A" text-anchor="end">$4.75</text>
+<text x="24" y="320" font-size="20" font-weight="600" fill="#14213A">Total</text><text x="456" y="320" font-size="20" font-weight="600" fill="#14213A" text-anchor="end">$52.23</text>
+<rect x="300" y="470" rx="8" width="300" height="52" fill="#E8833A"/>
+<text x="320" y="503" font-size="16" font-weight="600" fill="#FFFFFF">Return this order</text>
+<text x="24" y="612" font-size="11" fill="#6B7280">Questions? support@northwind.example</text>
+</g>
+</svg>

@@ -1,0 +1,20 @@
+[
+  {
+    "text": ""
+  },
+  {
+    "text": ""
+  },
+  {
+    "text": "{\"verdict\":\"fail\",\"defects\":[\"low_contrast\"],\"evidence\":\"The Total row shows $111.78 in a very faint light color on a white background, while Subtotal $103.50 + Shipping $0.00 + Tax $8.28 correctly equals $111.78.\",\"confidence\":0.95}"
+  },
+  {
+    "text": "{\"verdict\":\"fail\",\"defects\":[\"low_contrast\"],\"evidence\":\"The Total row shows $111.78 in a very pale beige that is almost identical to the off-white background; the other amounts read $89.00, $14.50, $103.50, $0.00, and $8.28, which sum correctly.\",\"confidence\":0.99}"
+  },
+  {
+    "text": "{\"verdict\":\"fail\",\"defects\":[\"total_mismatch\"],\"evidence\":\"Items total $171.00 plus $0.00 shipping plus $14.11 tax equals $185.11, but the printed Total is $171.00.\",\"confidence\":1.0}"
+  },
+  {
+    "text": "{\"verdict\":\"fail\",\"defects\":[\"total_mismatch\"],\"evidence\":\"Items total $171.00 plus $0.00 shipping plus $14.11 tax equals $185.11, but the printed Total is $171.00.\",\"confidence\":0.99}"
+  }
+]

@@ -1,0 +1,5 @@
+[
+  {
+    "text": "```json\n{\"verdict\":\"fail\",\"defects\":[\"missing_total\"],\"evidence\":\"The receipt lists Subtotal ($78.00), Shipping ($0.00), and Tax ($3.90), but omits a final Total row altogether.\",\"confidence\":0.98}\n```"
+  }
+]

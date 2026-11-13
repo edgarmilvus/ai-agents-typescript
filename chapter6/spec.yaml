@@ -1,0 +1,42 @@
+book: "AI Agents in TypeScript"
+chapter: 6
+title: "Statistics — How Often, and How Much of That Number Is Noise"
+
+invariant: >
+  A rate is a count divided by a sample; an interval is what makes it quotable;
+  a comparison of two versions is only a claim when their intervals separate.
+
+artifacts:
+  - chapter6/stats.ts                    # rate · Wilson interval · compare · runsNeeded
+  - chapter6/files/01_rate.ts            # ten runs, and the two extremes
+  - chapter6/files/exercises/sampler.ts  # multi-file exercise, file 1: a model with a mixture
+  - chapter6/files/exercises/measure.ts  # file 2: run N times, tally, streak
+  - chapter6/files/exercises/ex3_variability.ts  # file 3: wiring, 20 runs
+  - chapter6/files/exercises/run_exercises.ts    # 25 assertions
+
+structure:
+  - Theoretical Foundations
+  - Basic Code Example
+  - Common Pitfalls
+  - Advanced Application Implementation
+  - How to run it
+  - Reading a Transcript
+  - Practical Exercises
+  - Solutions to the exercises
+  - What this chapter established
+
+multi_file_exercise:
+  id: ex3
+  title: "A model with a distribution"
+  files: [sampler.ts, measure.ts, ex3_variability.ts]
+  why: >
+    sampler.ts is pure (weights → behaviour for run i), measure.ts owns the
+    repetition and the tally and knows nothing about refunds, and the third file
+    is the only one that wires a desk to a model. A single-file version would
+    make the measurement untestable without running the agent.
+
+gates:
+  exercises: "node chapter6/files/exercises/run_exercises.ts"
+  exercises_expected: "25/25 exercise checks passed"
+
+words: { target: 17000, floor: 10900 }

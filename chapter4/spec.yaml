@@ -1,0 +1,53 @@
+book: "AI Agents in TypeScript"
+chapter: 4
+title: "Recordings — Making a Test Mean Something"
+
+invariant: >
+  A live run is a sample; a recording turns it into a fixture that proves what
+  the code does with it. Strict replay fails at the turn where the prompt
+  changed, a canonical diff turns two runs into one line, and a fixture that
+  stores tool results is a photograph, not a test.
+
+artifacts:
+  - chapter4/recording.ts                 # Recorder, TapeDeck, hashes, diff, stable
+  - chapter4/guard.ts                     # task-hash guard
+  - chapter4/files/01_record.ts           # one live run, recorded
+  - chapter4/files/02_replay.ts           # strict vs tolerant, and the failure
+  - chapter4/files/03_divergence.ts       # two runs, canonical diff
+  - chapter4/files/04_record_mcp.ts       # recording across the MCP boundary
+  - chapter4/files/run_ex4.ts             # 26 assertions
+  - chapter4/files/exercises/*.ts         # five exercises + runner (28 assertions)
+  - chapter4/images/*.png                 # cycle, divergence taxonomy, file graph
+
+structure:
+  - Theoretical Foundations
+  - Basic Code Example
+  - Common Pitfalls
+  - Advanced Application Implementation
+  - How to run it
+  - Reading a Transcript
+  - Practical Exercises
+  - Solutions to the exercises
+  - What this chapter established
+
+gates:
+  harness: "node chapter4/files/run_ex4.ts"
+  harness_expected: "26/26 checks passed"
+  exercises: "node chapter4/files/exercises/run_exercises.ts"
+  exercises_expected: "28/28 exercise checks passed"
+  listings: "python3 tools/check_listings.py chapter4"
+  words: "python3 tools/check_words.py chapter4"
+
+words: { target: 17000, floor: 10900 }
+
+exercises:
+  - id: ex1
+    title: "Strictness at the right turn"
+  - id: ex2
+    title: "A recording belongs to a task"
+  - id: ex3
+    title: "The first divergence, in one line"
+  - id: ex4
+    title: "Replay a prefix, honestly"
+  - id: ex5
+    title: "What a fixture must not contain"

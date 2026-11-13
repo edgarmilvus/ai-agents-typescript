@@ -1,0 +1,26 @@
+[
+  {
+    "text": "{\"verdict\":\"pass\",\"defects\":[],\"evidence\":\"The printed Total $198.10 equals Subtotal $177.00 plus Shipping $6.00 plus Tax $15.10, and all amounts and controls are fully visible.\",\"confidence\":1.0}"
+  },
+  {
+    "text": "{\"verdict\":\"fail\",\"defects\":[\"missing_total\"],\"evidence\":\"The receipt lists Desk lamp $54.00, Cable kit $24.00, Subtotal $78.00, Shipping $0.00, and Tax $3.90, but no Total row is shown.\",\"confidence\":1.0}"
+  },
+  {
+    "text": ""
+  },
+  {
+    "text": ""
+  },
+  {
+    "text": "{\"verdict\":\"fail\",\"defects\":[\"low_contrast\"],\"evidence\":\"The Total row shows $111.78 in a very pale gray that nearly blends into the white background, while Subtotal $103.50, Shipping $0.00, and Tax $8.28 are legible.\",\"confidence\":0.98}"
+  },
+  {
+    "text": "{\"verdict\":\"pass\",\"defects\":[],\"evidence\":\"Total $52.23 equals the sum of Subtotal $39.98, Shipping $7.50, and Tax $4.75, with no visible layout defects.\",\"confidence\":1.0}"
+  },
+  {
+    "text": "{\"verdict\":\"fail\",\"defects\":[\"total_mismatch\"],\"evidence\":\"Items $129.00 + $42.00 = $171.00, shipping $0.00, tax $14.11, but the printed Total is $171.00 instead of $185.11.\",\"confidence\":1.0}"
+  },
+  {
+    "text": "{\"verdict\":\"pass\",\"defects\":[],\"evidence\":\"Read items $24.00 and $65.00, subtotal $89.00, shipping $0.00, tax $6.23, and total $95.23, which matches the printed total with no visible defects.\",\"confidence\":1.0}"
+  }
+]

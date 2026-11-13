@@ -1,0 +1,14 @@
+[
+  {
+    "text": "{\"verdict\":\"fail\",\"defects\":[\"missing_total\"],\"evidence\":\"The receipt lists Desk lamp $54.00, Cable kit $24.00, Subtotal $78.00, Shipping $0.00, and Tax $3.90, but has no Total row.\",\"confidence\":0.99}"
+  },
+  {
+    "text": ""
+  },
+  {
+    "text": "{\"verdict\":\"fail\",\"defects\":[\"low_contrast\"],\"evidence\":\"The Total row shows $111.78 in very faint light gray/cream text against the white background, making it low contrast, while $89.00 + $14.50 + $0.00 shipping + $8.28 tax equals $111.78.\",\"confidence\":0.97}"
+  },
+  {
+    "text": "{\"verdict\":\"fail\",\"defects\":[\"total_mismatch\"],\"evidence\":\"Chair $129.00 + Cushion $42.00 + Shipping $0.00 + Tax $14.11 = $185.11, but the printed Total is $171.00.\",\"confidence\":0.99}"
+  }
+]

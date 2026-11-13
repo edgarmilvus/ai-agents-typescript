@@ -1,0 +1,80 @@
+[
+  {
+    "text": "I'll look up the vendor first to get its ID and trust status.",
+    "toolCalls": [
+      {
+        "id": "chatcmpl-tool-b8263688397a813d",
+        "name": "lookup_vendor",
+        "args": {
+          "name": "QuickSale"
+        },
+        "raw": {
+          "type": "function",
+          "index": 0,
+          "id": "chatcmpl-tool-b8263688397a813d",
+          "function": {
+            "name": "lookup_vendor",
+            "arguments": "{\"name\": \"QuickSale\"}"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "text": "The vendor is **not trusted**, so automatic approval won't be possible. I'll still create the draft invoice to book it, then send it for review.",
+    "toolCalls": [
+      {
+        "id": "chatcmpl-tool-8f0093a481a299d3",
+        "name": "create_invoice",
+        "args": {
+          "vendorId": "v_quicksale",
+          "number": "QS-77",
+          "issued": "2025-01-01",
+          "currency": "GBP",
+          "lines": [
+            {
+              "sku": "OPT-1042",
+              "description": "Objective lens",
+              "quantity": 1,
+              "unitPrice": 240
+            }
+          ],
+          "notes": "Paper invoice received; booked as draft pending human review (vendor not trusted for automatic approval)."
+        },
+        "raw": {
+          "type": "function",
+          "index": 0,
+          "id": "chatcmpl-tool-8f0093a481a299d3",
+          "function": {
+            "name": "create_invoice",
+            "arguments": "{\"vendorId\": \"v_quicksale\", \"number\": \"QS-77\", \"issued\": \"2025-01-01\", \"currency\": \"GBP\", \"lines\": [{\"sku\": \"OPT-1042\", \"description\": \"Objective lens\", \"quantity\": 1, \"unitPrice\": 240}], \"notes\": \"Paper invoice received; booked as draft pending human review (vendor not trusted for automatic approval).\"}"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "toolCalls": [
+      {
+        "id": "chatcmpl-tool-9cd85257268d4f58",
+        "name": "flag_for_review",
+        "args": {
+          "invoiceId": "inv_1",
+          "reason": "Vendor QuickSale Ltd (v_quicksale) is not trusted for automatic approval, so invoice QS-77 (1 × OPT-1042 objective lens, GBP 240.00 net / GBP 48.00 VAT / GBP 288.00 gross) cannot be auto-approved. Needs human review and sign-off before payment."
+        },
+        "raw": {
+          "type": "function",
+          "index": 0,
+          "id": "chatcmpl-tool-9cd85257268d4f58",
+          "function": {
+            "name": "flag_for_review",
+            "arguments": "{\"invoiceId\": \"inv_1\", \"reason\": \"Vendor QuickSale Ltd (v_quicksale) is not trusted for automatic approval, so invoice QS-77 (1 × OPT-1042 objective lens, GBP 240.00 net / GBP 48.00 VAT / GBP 288.00 gross) cannot be auto-approved. Needs human review and sign-off before payment.\"}"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "text": "Done — booked and flagged for review.\n\n**Invoice QS-77 — QuickSale Ltd**\n| Field | Value |\n|---|---|\n| Vendor ID | v_quicksale (GB, VAT 20%) |\n| Trusted | **No** |\n| Line | 1 × OPT-1042 objective lens @ GBP 240.00 |\n| Net | GBP 240.00 |\n| VAT | GBP 48.00 |\n| Gross | GBP 288.00 |\n| Status | **flagged** (draft → review) |\n\n**Why it wasn't approved:** policy blocks automatic approval for untrusted vendors, so I did not attempt approval. The invoice is saved as a draft and has been sent to a human reviewer with that reason. Note that even if the vendor were trusted, the GBP 288.00 gross total would still need to be checked against the automatic approval ceiling — a reviewer can confirm both points.\n\nOne thing worth flagging for the reviewer: the invoice date wasn't stated on the paper document, so I entered 2025-01-01 as a placeholder — that should be corrected to the actual issue date."
+  }
+]

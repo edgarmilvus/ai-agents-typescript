@@ -1,0 +1,23 @@
+{
+  "taskId": "t13",
+  "request": "Give them the break we agreed in March.",
+  "model": "deepseek-v4.1-flash",
+  "queries": [
+    "March agreement break",
+    "March decision",
+    "break for them",
+    "discount concession exception",
+    "deadline extension",
+    "client request",
+    "March meeting notes",
+    "agreed in March",
+    "ORD-7801"
+  ],
+  "answer": "Stopped after 4 steps without a final answer.",
+  "usage": {
+    "calls": 4,
+    "promptTokens": 1877,
+    "outputTokens": 396
+  },
+  "recordedAt": "2026-10-31T19:17:26.048Z"
+}

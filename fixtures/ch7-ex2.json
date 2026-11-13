@@ -1,0 +1,8 @@
+[
+  {
+    "text": "```json\n{\"verdict\":\"pass\",\"defects\":[],\"evidence\":\"The receipt shows a subtotal of $39.98, shipping of $7.50, and tax of $4.75, which correctly sum to the printed total of $52.23 with no layout defects.\",\"confidence\":1.0}\n```"
+  },
+  {
+    "text": "```json\n{\n  \"layout\": {\n    \"Northwind Supply\": \"0.50-0.89\",\n    \"Order NW-1123\": \"0.50-0.74\",\n    \"Filter (item 1)\": \"0.50-0.95\",\n    \"Filter (item 2)\": \"0.50-0.95\",\n    \"Subtotal\": \"0.50-0.95\",\n    \"Shipping\": \"0.50-0.95\",\n    \"Tax\": \"0.50-0.95\",\n    \"Total\": \"0.50-0.95\",\n    \"Return this order button\": \"0.62-0.95\",\n    \"Support email\": \"0.50-0.93\"\n  },\n  \"verdict\": \"pass\",\n  \"defects\": [],\n  \"evidence\": \"All line items add up correctly ($39.98 + $7.50 + $4.75 = $52.23) and all receipt elements are properly formatted and visible without any defects.\",\n  \"confidence\": 1.0\n}\n```"
+  }
+]

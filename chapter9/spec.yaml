@@ -1,0 +1,71 @@
+book: "AI Agents in TypeScript"
+chapter: 9
+title: "Who Tests the Tests — Mutation, Survivors and a Gate That Can Fail"
+
+invariant: >
+  A suite's strength is the number of deliberate breakages it catches, not the
+  number of checks it runs; a check that cannot fail is a comment.
+
+artifacts:
+  - chapter9/desk9.ts                     # the refund desk, four orders, three guards
+  - chapter9/variants.ts                  # thirteen mutants and their triage
+  - chapter9/suite.ts                     # six cases, recorded and authored
+  - chapter9/files/01_first_mutant.ts     # one breakage, one red case
+  - chapter9/files/02_score.ts            # the mutant x case matrix
+  - chapter9/files/03_survivors.ts        # three survivors, three reasons
+  - chapter9/files/04_check_test.ts       # the check is code too
+  - chapter9/files/05_gate.ts             # the gate, and the case it needs
+  - chapter9/files/06_cost.ts             # mutants x cases, priced
+  - chapter9/files/run_ex9.ts             # assertions
+  - chapter9/files/exercises/*.ts         # five exercises + runner
+  - chapter9/gate.ts                      # six conditions, six hand-built desks
+  - chapter9/images/loop.png              # suite -> mutants -> matrix -> triage
+  - chapter9/images/matrix.png            # fourteen mutants against six cases
+  - chapter9/images/triage.png            # three reasons, three artefacts
+  - chapter9/images/gate.png              # six conditions and their conjunction
+
+structure:
+  - Theoretical Foundations
+  - Basic Code Example
+  - Common Pitfalls
+  - Advanced Application Implementation
+  - How to run it
+  - Reading a Transcript
+  - Practical Exercises
+  - Solutions to the exercises
+  - What this chapter established
+
+multi_file_exercise:
+  id: ex3
+  title: "A mutation score for six cases"
+  files: [ex3_matrix.ts, ex3_suite.ts, ex3_run.ts]
+  why: >
+    ex3_matrix.ts is pure: a matrix of killed/survived cells in, a score and a
+    survivor list out, no clock and no desk. ex3_suite.ts owns the effect: it
+    builds each mutant, runs every case, and records what happened.
+    ex3_run.ts is the wiring and prints the table. The score can be tested with
+    a hand-written matrix, which is the seam a real suite needs.
+
+gates:
+  harness: "node chapter9/files/run_ex9.ts"
+  harness_expected: "56/56 checks passed"
+  exercises: "node chapter9/files/exercises/run_exercises.ts"
+  exercises_expected: "45/45 exercise checks passed"
+  listings: "python3 tools/check_listings.py chapter9"
+  words: "python3 tools/check_words.py chapter9"
+
+words: { target: 17000, floor: 10900, actual: 22562 }
+listing_count: 18
+figure_count: 4
+
+exercises:
+  - id: ex1
+    title: "Operators that can be killed"
+  - id: ex2
+    title: "What the cases can reach"
+  - id: ex3
+    title: "A mutation score for six cases"
+  - id: ex4
+    title: "Triage, and the three ways a mutant survives"
+  - id: ex5
+    title: "What a mutation run costs"

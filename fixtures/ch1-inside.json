@@ -1,0 +1,66 @@
+[
+  {
+    "text": "I'll look up the order first.",
+    "toolCalls": [
+      {
+        "id": "call_00_8cl31465dbafr8xd3e9b9d16",
+        "name": "lookup_order",
+        "args": {
+          "orderId": "ORD-7712"
+        },
+        "raw": {
+          "id": "call_00_8cl31465dbafr8xd3e9b9d16",
+          "type": "function",
+          "function": {
+            "name": "lookup_order",
+            "arguments": "{\"orderId\": \"ORD-7712\"}"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "toolCalls": [
+      {
+        "id": "call_00_339mk5xh7fpujltcxvbruqv4",
+        "name": "refund_policy",
+        "args": {
+          "region": "EU"
+        },
+        "raw": {
+          "id": "call_00_339mk5xh7fpujltcxvbruqv4",
+          "type": "function",
+          "function": {
+            "name": "refund_policy",
+            "arguments": "{\"region\": \"EU\"}"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "text": "Policy check: EU window is 14 days (order is 6 days post-delivery), and auto-refund ceiling is €500 (total is €84). Damaged on arrival, within window — full refund is allowed.",
+    "toolCalls": [
+      {
+        "id": "call_00_o330r0fg36ppofea6g2m24qv",
+        "name": "issue_refund",
+        "args": {
+          "amount": 84,
+          "orderId": "ORD-7712",
+          "reason": "Item arrived damaged; customer requested full refund. Within EU 14-day window (6 days since delivery) and under €500 auto-refund ceiling."
+        },
+        "raw": {
+          "id": "call_00_o330r0fg36ppofea6g2m24qv",
+          "type": "function",
+          "function": {
+            "name": "issue_refund",
+            "arguments": "{\"amount\": 84, \"orderId\": \"ORD-7712\", \"reason\": \"Item arrived damaged; customer requested full refund. Within EU 14-day window (6 days since delivery) and under €500 auto-refund ceiling.\"}"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "text": "Done — the refund was approved and processed, no escalation needed.\n\n- **Order:** ORD-7712\n- **Amount:** €84.00 EUR (full refund)\n- **Refund ID:** rf_ord7712\n- **Policy basis:** EU region, 14-day window (delivered 6 days ago), €500 automatic ceiling — all conditions met\n\nThe customer should expect the €84.00 back on their original payment method per the usual processing timeline."
+  }
+]

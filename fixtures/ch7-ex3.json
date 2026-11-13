@@ -1,0 +1,20 @@
+[
+  {
+    "text": "```json\n{\"verdict\":\"pass\",\"defects\":[],\"evidence\":\"The receipt lists Canvas tote at $48.00 and Wool blanket at $129.00 with Subtotal $177.00, Shipping $6.00, and Tax $15.10, correctly summing to Total $198.10 with no defects.\",\"confidence\":1.0}\n```"
+  },
+  {
+    "text": "```json\n{\"verdict\":\"fail\",\"defects\":[\"truncated_amount\"],\"evidence\":\"The total amount is cut off by the right edge, reading '$3' instead of '$31.00'.\",\"confidence\":0.98}\n```"
+  },
+  {
+    "text": "```json\n{\"verdict\":\"fail\",\"defects\":[\"low_contrast\"],\"evidence\":\"The Total row displaying $111.78 is rendered in a very pale color that is nearly identical to the background, making it extremely difficult to read.\",\"confidence\":0.99}\n```"
+  },
+  {
+    "text": "```json\n{\"verdict\":\"pass\",\"defects\":[],\"evidence\":\"The receipt shows a subtotal of $39.98, shipping of $7.50, tax of $4.75, and a correctly calculated total of $52.23 without any layout or arithmetic errors.\",\"confidence\":1.0}\n```"
+  },
+  {
+    "text": "```json\n{\"verdict\":\"fail\",\"defects\":[\"total_mismatch\"],\"evidence\":\"The printed Total of $171.00 does not match the sum of Subtotal ($171.00) plus Shipping ($0.00) plus Tax ($14.11), which equals $185.11.\",\"confidence\":1.0}\n```"
+  },
+  {
+    "text": "```json\n{\"verdict\":\"pass\",\"defects\":[],\"evidence\":\"The receipt shows Subtotal $89.00, Shipping $0.00, and Tax $6.23 summing correctly to the printed Total of $95.23 with no layout issues.\",\"confidence\":1.0}\n```"
+  }
+]

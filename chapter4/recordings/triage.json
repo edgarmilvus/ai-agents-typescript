@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "model": "deepseek-v4.1-flash",
+  "recordedAt": "2026-10-31T19:14:34.449Z",
+  "task": "A customer says the headphones arrived damaged and wants a full refund. Order ORD-7712. Refund it if policy allows.",
+  "taskHash": "77ab1af7256eb968",
+  "turns": [
+    {
+      "inputHash": "fb2838977dfd3051",
+      "reply": {
+        "text": "I'll look up the order and the applicable refund policy first.",
+        "toolCalls": [
+          {
+            "id": "call_4da40fa7083147e0b4df096c",
+            "name": "lookup_order",
+            "args": {
+              "orderId": "ORD-7712"
+            },
+            "raw": {
+              "id": "call_4da40fa7083147e0b4df096c",
+              "type": "function",
+              "function": {
+                "name": "lookup_order",
+                "arguments": "{\"orderId\":\"ORD-7712\"}"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "inputHash": "d9321182d68146ef",
+      "reply": {
+        "toolCalls": [
+          {
+            "id": "call_7ef36aa07efc463ab11d0359",
+            "name": "refund_policy",
+            "args": {
+              "region": "EU"
+            },
+            "raw": {
+              "id": "call_7ef36aa07efc463ab11d0359",
+              "type": "function",
+              "function": {
+                "name": "refund_policy",
+                "arguments": "{\"region\":\"EU\"}"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "inputHash": "99041aaa2dc69aba",
+      "reply": {
+        "text": "Policy checks out: EU window is 14 days (delivered 6 days ago) and the automatic ceiling is €500 (order is €84). Processing the refund.",
+        "toolCalls": [
+          {
+            "id": "call_44fbcc95d9b34620bfe34dd3",
+            "name": "issue_refund",
+            "args": {
+              "orderId": "ORD-7712",
+              "amount": 84,
+              "reason": "Headphones arrived damaged; full refund requested by customer."
+            },
+            "raw": {
+              "id": "call_44fbcc95d9b34620bfe34dd3",
+              "type": "function",
+              "function": {
+                "name": "issue_refund",
+                "arguments": "{\"orderId\":\"ORD-7712\",\"amount\":84,\"reason\":\"Headphones arrived damaged; full refund requested by customer.\"}"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "inputHash": "d9aee1f512a91efb",
+      "reply": {
+        "text": "Refund issued ✅\n\n- **Order:** ORD-7712 — €84.00, EU region, delivered 6 days ago\n- **Policy check:** within the 14-day window; €84 is well under the €500 auto-refund ceiling\n- **Refund:** full €84.00, ID `rf_ord7712`\n- **Reason logged:** headphones arrived damaged\n\nNothing needs a human hand-off here. If the customer also expects a replacement rather than just the refund, that would be a separate request — let me know and I can escalate it to the team."
+      }
+    }
+  ],
+  "usage": {
+    "calls": 4,
+    "promptTokens": 2702,
+    "outputTokens": 392
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "taskId": "t2-escalate",
+  "request": "Handle ORD-7801 (640 EUR, three weeks old).",
+  "model": "deepseek-v4.1-flash",
+  "answer": "The clerk found ORD-7801 (640 EUR, three weeks old, EU) falls under the policy's escalation path rather than a refund, and the cashier escalated it accordingly under reference esc_ord7801.",
+  "packets": [
+    {
+      "role": "clerk",
+      "goal": "Read order ORD-7801 and the refund policy, then report a verdict of either \"refund\" or \"escalate\" for this order.",
+      "facts": {
+        "orderId": "ORD-7801",
+        "amount": 640
+      },
+      "constraints": [
+        "Order is 640 EUR and three weeks old",
+        "apply the refund policy to these facts and state the verdict explicitly."
+      ],
+      "returnSchema": [
+        "verdict",
+        "region"
+      ]
+    },
+    {
+      "role": "cashier",
+      "goal": "Act on the clerk's verdict for order ORD-7801: escalate rather than refund. Carry out the escalation per the verdict.",
+      "facts": {
+        "orderId": "ORD-7801",
+        "amount": 640,
+        "verdict": "escalate"
+      },
+      "constraints": [
+        "Order ORD-7801, amount 640 EUR, three weeks old, EU region",
+        "clerk's verdict is escalate, so do not issue a refund."
+      ],
+      "returnSchema": [
+        "action",
+        "reference"
+      ]
+    }
+  ],
+  "calls": 3,
+  "usage": {
+    "calls": 3,
+    "promptTokens": 2180,
+    "outputTokens": 570
+  },
+  "recordedAt": "2026-10-31T19:16:14.257Z"
+}

@@ -1,0 +1,65 @@
+{
+  "version": 1,
+  "model": "deepseek-v4.1-flash",
+  "recordedAt": "2026-10-31T19:14:56.268Z",
+  "task": "Open warehouse berlin-1, quote pickup pick_01 at 4 kg with dhl and with gls, and tell me which is cheaper. Do not book.",
+  "taskHash": "9a4aced6ba9f3548",
+  "turns": [
+    {
+      "inputHash": "c78d4598c619bce7",
+      "reply": {
+        "text": "I'll open the warehouse first, then quote both carriers.",
+        "toolCalls": [
+          {
+            "id": "call_48570f14bec348968bd17c06",
+            "name": "open_warehouse",
+            "args": {
+              "warehouse": "berlin-1"
+            },
+            "raw": {
+              "id": "call_48570f14bec348968bd17c06",
+              "type": "function",
+              "function": {
+                "name": "open_warehouse",
+                "arguments": "{\"warehouse\":\"berlin-1\"}"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "inputHash": "d889d998f362cb2a",
+      "reply": {
+        "toolCalls": [
+          {
+            "id": "call_dbbc6326d1d24296a78206f5",
+            "name": "search",
+            "args": {
+              "query": "pick_01"
+            },
+            "raw": {
+              "id": "call_dbbc6326d1d24296a78206f5",
+              "type": "function",
+              "function": {
+                "name": "search",
+                "arguments": "{\"query\":\"pick_01\"}"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "inputHash": "3140ba2461c4d9ea",
+      "reply": {
+        "text": "I've opened **berlin-1** and found the pickup:\n\n- **pick_01** — carrier: **dhl**\n\nBefore I can produce the quotes I need one more piece of info: **the destination country**. `quote_rate` requires a country, and nothing in the warehouse data exposes pick_01's destination.\n\nTwo notes while you're answering:\n\n1. **pick_01 is a DHL pickup** — its assigned carrier is DHL. Quoting GLS for it is a cross-carrier comparison, not a like-for-like swap (you'd be comparing a rate against a service the pickup isn't currently set up with). Happy to do it anyway if that's the intent, just flagging it.\n2. I'll only quote — no booking will be made.\n\nWhat country should I price to (and confirm 4 kg is the right weight for the comparison)?"
+      }
+    }
+  ],
+  "usage": {
+    "calls": 3,
+    "promptTokens": 1822,
+    "outputTokens": 540
+  }
+}

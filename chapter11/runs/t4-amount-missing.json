@@ -1,0 +1,29 @@
+{
+  "taskId": "t4-amount-missing",
+  "request": "Refund the order the customer mentioned.",
+  "model": "deepseek-v4.1-flash",
+  "answer": "I can't proceed: no order ID was ever given, and the clerk tool refuses to run without one — so please tell me which order (its ID) the customer meant, and I'll run the lookup and refund.",
+  "packets": [
+    {
+      "role": "clerk",
+      "goal": "Look up the order the customer wants refunded, read the refund policy, and report back whether it is eligible for a refund.",
+      "facts": {},
+      "constraints": [
+        "Do not issue any refund",
+        "read-only step",
+        "report the order id, amount, and policy verdict"
+      ],
+      "returnSchema": [
+        "verdict",
+        "region"
+      ]
+    }
+  ],
+  "calls": 2,
+  "usage": {
+    "calls": 2,
+    "promptTokens": 1135,
+    "outputTokens": 708
+  },
+  "recordedAt": "2026-10-31T19:16:22.963Z"
+}
