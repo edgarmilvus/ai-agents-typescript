@@ -4,9 +4,9 @@ The runnable companion to *AI Agents in TypeScript*. Twenty chapters, no
 dependencies, Node's own TypeScript support, and recorded model turns so the
 whole suite runs offline in about fifteen seconds.
 
-This repository is the code, not the book. Each chapter's prose, diagrams and
-exercises live in the manuscript; here you get the modules, the demos, the
-harnesses and the exercise solutions that the text discusses.
+This repository is the code, not the book. The prose, diagrams and exercises
+live in the book itself; here you get the modules, the demos, the harnesses and
+the exercise solutions that the text discusses.
 
 ## The twenty chapters
 
@@ -125,6 +125,17 @@ export OPENAI_COMPATIBLE_API_KEY=your-key
 
 The key is the only variable a normal live run needs. Change the base URL and
 model only to point at another OpenAI-compatible endpoint.
+
+## When something does not start
+
+| message | what it means |
+| --- | --- |
+| `node: command not found` | Node is not installed, or not on `PATH`. Check `node -v`; you need 24 or later. |
+| `Unknown file extension ".ts"` | The Node you are running is older than 24 and cannot strip types. Install Node 24 and check again. |
+| `ERR_MODULE_NOT_FOUND` on `lib/…` or `fixtures/…` | You ran the file from inside `files/`. Run it from the repository root, or use `./run_offline.sh N`. |
+| `permission denied: ./run_offline.sh` | `chmod +x run_offline.sh run_everything.sh`, once. |
+| `fetch failed` / `ECONNREFUSED` during the offline suite | Something ran without `AGENTLAB_REPLAY=1`. Use the script, or export the variable yourself. |
+| `OPENAI_COMPATIBLE_API_KEY` unset | Only the live pass needs it. The offline suite never reads it. |
 
 ## Windows and PowerShell
 

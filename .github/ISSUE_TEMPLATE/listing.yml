@@ -1,0 +1,65 @@
+name: A listing does not run
+description: A script in the repository fails, prints something different from the book, or cannot start.
+title: "chN listing — "
+labels: ["code"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        The facts below are what makes a report reproducible. Without them the first
+        three replies are questions.
+  - type: input
+    id: chapter
+    attributes:
+      label: Chapter
+      placeholder: "7"
+    validations:
+      required: true
+  - type: input
+    id: listing
+    attributes:
+      label: Listing
+      description: The path under the repository root, or the folder plus the file name.
+      placeholder: "chapter7/files/01_script.ts"
+    validations:
+      required: true
+  - type: textarea
+    id: command
+    attributes:
+      label: The command you ran
+      render: shell
+      placeholder: "node chapter7/files/01_script.ts"
+    validations:
+      required: true
+  - type: textarea
+    id: output
+    attributes:
+      label: Full error output
+      description: The last 30 lines are enough, but include the error line itself and the exit code.
+      render: shell
+    validations:
+      required: true
+  - type: dropdown
+    id: mode
+    attributes:
+      label: How it was run
+      options:
+        - Offline, through run_offline.sh
+        - Offline, node called directly with AGENTLAB_REPLAY=1
+        - Live, against a model endpoint
+    validations:
+      required: true
+  - type: input
+    id: versions
+    attributes:
+      label: Node and OS
+      description: The output of `node -v`, and your operating system.
+      placeholder: "24.4.1 on macOS 15.2"
+    validations:
+      required: true
+  - type: input
+    id: provider
+    attributes:
+      label: Gateway
+      description: The base URL the listing was pointed at, if it calls a model. Never paste the key.
+      placeholder: "https://openrouter.ai/api/v1"
