@@ -8,8 +8,8 @@ This repository is the code, not the book. The prose, diagrams and exercises
 live in the book itself; here you get the modules, the demos, the harnesses and
 the exercise solutions that the text discusses.
 
-For the book itself — description, sample chapters and the full table of
-contents — see **[AI Agents in TypeScript](https://tiny.cc/TypescriptAgents)**.
+For the book itself — description and the full table of contents — see
+**[AI Agents in TypeScript](https://tiny.cc/TypescriptAgents)**.
 
 ## The twenty chapters
 
