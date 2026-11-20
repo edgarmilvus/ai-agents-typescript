@@ -7,45 +7,6 @@ invariant: >
   the loop re-sends, so the budget is a design decision made before the first
   call rather than a bill discovered at the end of the month.
 
-artifacts:
-  - chapter15/price.ts                     # models, call pricing, the loop's cost model
-  - chapter15/loop.ts                      # three shapes and what each re-sends
-  - chapter15/routing.ts                   # cheap first, escalate on failure
-  - chapter15/cache.ts                     # keys, TTL, hit rate, staleness
-  - chapter15/files/01_one_task.ts         # one task, three shapes
-  - chapter15/files/02_growth.ts           # the history you re-send every turn
-  - chapter15/files/03_routing.ts          # twenty tasks, three policies
-  - chapter15/files/04_cache.ts            # the traffic window, cached
-  - chapter15/files/05_budgets.ts          # steps are not tokens
-  - chapter15/files/06_verification.ts     # what the book's own suite costs
-  - chapter15/files/run_ex15.ts            # assertions
-  - chapter15/files/exercises/*.ts         # five exercises + runner
-  - chapter15/images/shapes.png            # three shapes, one task
-  - chapter15/images/growth.png            # the loop as a series
-  - chapter15/images/routing.png           # three policies on twenty tasks
-  - chapter15/images/budget.png            # steps against tokens
-
-structure:
-  - Theoretical Foundations
-  - Basic Code Example
-  - Common Pitfalls
-  - Advanced Application Implementation
-  - How to run it
-  - Reading a Transcript
-  - Practical Exercises
-  - Solutions to the exercises
-  - What this chapter established
-
-multi_file_exercise:
-  id: ex3
-  title: "A router, a price list and a table"
-  files: [ex3_price.ts, ex3_router.ts, ex3_run.ts]
-  why: >
-    ex3_price.ts is pure arithmetic: tokens and a model in, money out, with no
-    tasks and no policy. ex3_router.ts owns the decision: which tier to try,
-    when to escalate, what it cost. ex3_run.ts is the wiring and the table. The
-    arithmetic can be tested with two calls, which is the seam.
-
 gates:
   harness: "node chapter15/files/run_ex15.ts"
   harness_expected: "42/42 checks passed"
@@ -53,19 +14,3 @@ gates:
   exercises_expected: "43/43 exercise checks passed"
   listings: "python3 tools/check_listings.py chapter15"
   words: "python3 tools/check_words.py chapter15"
-
-words: { target: 17000, floor: 10900, actual: 18340 }
-listing_count: 18
-figure_count: 4
-
-exercises:
-  - id: ex1
-    title: "Price a call"
-  - id: ex2
-    title: "The history you re-send"
-  - id: ex3
-    title: "A router, a price list and a table"
-  - id: ex4
-    title: "A cache with a clock"
-  - id: ex5
-    title: "Steps are not tokens"

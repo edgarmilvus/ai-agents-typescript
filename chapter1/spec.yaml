@@ -4,42 +4,12 @@
 book: "AI Agents in TypeScript"
 chapter: 1
 title: "The Loop, the State, the Tool Surface"
-subtitle: "What an agent is, in about a hundred lines you can test"
-
 # One sentence. If the chapter cannot prove this, it is not this chapter.
 invariant: >
   An agent is a loop over a transcript, a tool registry that validates before it
   executes, and a stop condition. Every claim about behaviour is checkable
   offline against a recorded transcript, and the same loop runs unchanged
   against a real provider.
-
-# What the finished chapter must leave on disk.
-artifacts:
-  - chapter1/files/agent.ts                 # loop, registry, validate(), ReplayModel
-  - chapter1/files/01_the_loop.ts           # basic example
-  - chapter1/files/02_tool_surface.ts       # the three failure modes
-  - chapter1/files/03_support_triage.ts     # real-world: refund desk, two outcomes
-  - chapter1/files/04_live_model.ts        # same loop, real provider, budget-guarded
-  - chapter1/files/run_ex1.ts               # harness, offline
-  - chapter1/files/exercises/*.ts           # 5 exercises, solutions, runner
-  - chapter1/images/loop.png                # the loop, as a state machine
-  - chapter1/images/refusals.png            # the three refusal layers
-  - chapter1/images/desk.png                # the refund desk as the tools enforce it
-
-# The API surface the prose may name. Anything else is a defect.
-api:
-  types: [Role, Message, ToolCall, ModelReply, Model, ParamSpec, ToolSpec, Step, Run, StopReason]
-  functions: [validate, toolCall]
-  classes: [Agent, ReplayModel, OpenAIChatModel]
-  methods:
-    Agent: [run, find]
-    ReplayModel: [step]
-    OpenAIChatModel: [step]
-  rules:
-    - "A tool is {name, description, params, run}."
-    - "validate() is the only gate between model output and run()."
-    - "The loop never throws on a bad tool call; it writes the error into the transcript."
-    - "maxSteps is mandatory in the form of a default, and always reported in the Run."
 
 # Gates the chapter must pass before prose is accepted.
 gates:
@@ -50,54 +20,3 @@ gates:
   live: "node chapter1/files/04_live_model.ts"
   live_budget_calls: 6
   no_key_required: true
-
-# Length budget for the pilot, scaled later to the series figure.
-# The template the chapter must follow, in this order.
-structure:
-  - Theoretical Foundations
-  - Basic Code Example          # with its line-by-line explanation
-  - Common Pitfalls
-  - Advanced Application Implementation
-  - How to run it               # commands, expected output, key, budgets
-  - Practical Exercises         # requirements only: no code, no figures, no commands
-  - Solutions to the exercises  # per exercise: the whole file, "How to run it", then the analysis
-
-# Every listing that can be executed is followed by a bold "How to run it."
-# paragraph and a bash fence with the exact command, runnable from the
-# repository root. The chapter-level section of the same name is in addition
-# to these, not instead of them: a reader who lands on one listing should not
-# have to scroll to the front of the chapter to learn how to run it.
-run_blocks:
-  - chapter1/files/01_the_loop.ts
-  - chapter1/files/02_tool_surface.ts
-  - chapter1/files/03_support_triage.ts
-  - chapter1/files/04_live_model.ts      # --dry by default, live on request
-  - chapter1/files/exercises/ex1_solution.ts
-  - chapter1/files/exercises/ex2_solution.ts
-  - chapter1/files/exercises/ex3_solution.ts
-
-words:
-  target: 6000
-  floor: 4500
-
-exercises:
-  - id: ex1
-    title: "Recover from a refused lookup"
-    tests: 5
-    real_world: "catalogue search after an unknown SKU"
-  - id: ex2
-    title: "Bind a tool to the ticket's order"
-    tests: 3
-    real_world: "a refund that must not touch a second order"
-  - id: ex3
-    title: "Make refunds idempotent"
-    tests: 5
-    real_world: "retried tool calls must not refund twice"
-  - id: ex4
-    title: "Return the decision, not the row"
-    tests: 5
-    real_world: "a 977-character record for a 5-field decision"
-  - id: ex5
-    title: "Every failure has a category"
-    tests: 5
-    real_world: "seven failures, four actions, one unknown"

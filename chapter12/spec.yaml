@@ -7,48 +7,6 @@ invariant: >
   tool it can call becomes an attacker's tool — so the defence has to live at
   the boundary, where an action can be refused.
 
-artifacts:
-  - chapter12/taint.ts                     # values with provenance, and propagation
-  - chapter12/policy.ts                    # allow, deny, confirm; the rules and their reasons
-  - chapter12/attacks.ts                   # six attacks, six lookalikes, one fooled agent
-  - chapter12/pipeline.ts                  # unguarded, prompt-only, policy; the matrix
-  - chapter12/runs/i1.json                 # live: a tool note that tries to move money
-  - chapter12/files/00_record.ts           # records the live attempt
-  - chapter12/files/01_one_injection.ts    # one payload, three pipelines
-  - chapter12/files/02_corpus.ts           # six attacks, six lookalikes
-  - chapter12/files/03_taint.ts            # the same action, two sources
-  - chapter12/files/04_capability.ts       # a read-only child cannot be talked into paying
-  - chapter12/files/05_egress.ts           # the recipient allowlist
-  - chapter12/files/06_audit.ts            # what a refused action leaves behind
-  - chapter12/files/run_ex12.ts            # assertions
-  - chapter12/files/exercises/*.ts         # five exercises + runner
-  - chapter12/images/channels.png          # two channels, one context
-  - chapter12/images/matrix.png            # three pipelines, two rates
-  - chapter12/images/taint.png             # the same 84, two origins
-  - chapter12/images/boundary.png          # the layers, and the slip
-
-structure:
-  - Theoretical Foundations
-  - Basic Code Example
-  - Common Pitfalls
-  - Advanced Application Implementation
-  - How to run it
-  - Reading a Transcript
-  - Practical Exercises
-  - Solutions to the exercises
-  - What this chapter established
-
-multi_file_exercise:
-  id: ex3
-  title: "A policy that can say no"
-  files: [ex3_rules.ts, ex3_engine.ts, ex3_run.ts]
-  why: >
-    ex3_rules.ts is pure data: rules as predicates over an action, with no
-    engine and no corpus. ex3_engine.ts owns the evaluation: it walks the rules
-    and returns the first refusal, and it knows nothing about which attack is
-    being tested. ex3_run.ts is the wiring and the matrix. The rules can be
-    tested one at a time, which is how a policy is reviewed.
-
 gates:
   harness: "node chapter12/files/run_ex12.ts"
   harness_expected: "52/52 checks passed"
@@ -56,19 +14,3 @@ gates:
   exercises_expected: "47/47 exercise checks passed"
   listings: "python3 tools/check_listings.py chapter12"
   words: "python3 tools/check_words.py chapter12"
-
-words: { target: 17000, floor: 10900, actual: 18565 }
-listing_count: 19
-figure_count: 4
-
-exercises:
-  - id: ex1
-    title: "Where a value came from"
-  - id: ex2
-    title: "Rules that a reviewer can read"
-  - id: ex3
-    title: "A policy that can say no"
-  - id: ex4
-    title: "What a read-only child cannot do"
-  - id: ex5
-    title: "Precision, recall and the cost of saying no"

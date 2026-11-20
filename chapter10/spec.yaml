@@ -6,46 +6,6 @@ invariant: >
   A release is not validated by the suite that passed it but by its agreement
   with the release it replaces, measured on traffic nobody wrote a case for.
 
-artifacts:
-  - chapter10/traffic.ts                   # a seeded traffic model and its distribution
-  - chapter10/releases.ts                  # incumbent, four candidates, one comparison
-  - chapter10/canary.ts                    # severity gate, sequential boundary, stopping rules
-  - chapter10/drift.ts                     # coverage of the corpus, absolute failures
-  - chapter10/files/01_one_request.ts      # one request, two releases
-  - chapter10/files/02_shadow.ts           # the whole stream in shadow
-  - chapter10/files/03_severity.ts         # the critical divergence a rate test forgives
-  - chapter10/files/04_sequential.ts       # peeking, and the boundary that pays for it
-  - chapter10/files/05_drift.ts            # the bug both releases share
-  - chapter10/files/06_rollout.ts          # gate, shadow, canary, promote
-  - chapter10/files/run_ex10.ts            # assertions
-  - chapter10/files/exercises/*.ts         # five exercises + runner
-  - chapter10/images/shadow.png           # one request, two releases, six kinds
-  - chapter10/images/severity.png          # the divergence a rate forgives
-  - chapter10/images/sequential.png        # three rules, two rates
-  - chapter10/images/rollout.png           # gate, shadow, canary, drift, outcome
-
-structure:
-  - Theoretical Foundations
-  - Basic Code Example
-  - Common Pitfalls
-  - Advanced Application Implementation
-  - How to run it
-  - Reading a Transcript
-  - Practical Exercises
-  - Solutions to the exercises
-  - What this chapter established
-
-multi_file_exercise:
-  id: ex3
-  title: "A canary that can stop"
-  files: [ex3_boundary.ts, ex3_stream.ts, ex3_run.ts]
-  why: >
-    ex3_boundary.ts is pure: a sequence of observations in, a stopping decision
-    out, no clock and no traffic. ex3_stream.ts owns the effect: it walks the
-    stream, compares two releases per request and feeds the boundary.
-    ex3_run.ts is the wiring. The decision rule can be tested with a synthetic
-    sequence of divergences, which is the seam a real canary needs.
-
 gates:
   harness: "node chapter10/files/run_ex10.ts"
   harness_expected: "57/57 checks passed"
@@ -53,19 +13,3 @@ gates:
   exercises_expected: "38/38 exercise checks passed"
   listings: "python3 tools/check_listings.py chapter10"
   words: "python3 tools/check_words.py chapter10"
-
-words: { target: 17000, floor: 10900, actual: 21467 }
-listing_count: 18
-figure_count: 4
-
-exercises:
-  - id: ex1
-    title: "Agree, cosmetic, material, critical"
-  - id: ex2
-    title: "What the corpus cannot see"
-  - id: ex3
-    title: "A canary that can stop"
-  - id: ex4
-    title: "What a rollback costs"
-  - id: ex5
-    title: "Shadowing an upstream change"

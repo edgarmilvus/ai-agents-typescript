@@ -8,42 +8,6 @@ invariant: >
   memory, the cache, the policy and the budget are all keyed by the customer,
   and if a probe that crosses the boundary fails.
 
-artifacts:
-  - chapter17/tenant.ts                    # the branded id, the tenant, the stores
-  - chapter17/desk17.ts                    # per-tenant orders, policy, tools
-  - chapter17/probes.ts                    # eight attempts to answer one tenant with another's data
-  - chapter17/runtime.ts                   # scoped and global runtimes, the same agent code
-  - chapter17/files/01_one_leak.ts         # a global lookup, a refund for someone else
-  - chapter17/files/02_probes.ts           # the matrix, before and after
-  - chapter17/files/03_brand.ts            # an id that cannot be typed by accident
-  - chapter17/files/04_cache.ts            # a cache key that forgot the tenant
-  - chapter17/files/05_quota.ts            # one tenant's runaway is not another's bill
-  - chapter17/files/06_audit.ts            # the record, per tenant
-  - chapter17/files/run_ex17.ts            # assertions
-  - chapter17/files/exercises/*.ts         # five exercises + runner
-  - chapter17/images/*.png                 # boundary, matrix, key, quota
-
-structure:
-  - Theoretical Foundations
-  - Basic Code Example
-  - Common Pitfalls
-  - Advanced Application Implementation
-  - How to run it
-  - Reading a Transcript
-  - Practical Exercises
-  - Solutions to the exercises
-  - What this chapter established
-
-multi_file_exercise:
-  id: ex3
-  title: "A key that carries the tenant"
-  files: [ex3_keys.ts, ex3_store.ts, ex3_run.ts]
-  why: >
-    ex3_keys.ts is pure: a tenant and a subject in, a key out, with no store and
-    no agent. ex3_store.ts owns the effect: a map keyed by those keys, with a
-    lookup that cannot cross tenants. ex3_run.ts is the wiring and the table.
-    The key can be tested with two strings, which is the seam.
-
 gates:
   harness: "node chapter17/files/run_ex17.ts"
   harness_expected: "26/26 checks passed"
@@ -51,19 +15,3 @@ gates:
   exercises_expected: "30/30 exercise checks passed"
   listings: "python3 tools/check_listings.py chapter17"
   words: "python3 tools/check_words.py chapter17"
-
-words: { target: 17000, floor: 10900, actual: 17896 }
-listing_count: 18
-figure_count: 4
-
-exercises:
-  - id: ex1
-    title: "A key you cannot forge"
-  - id: ex2
-    title: "Every store, one question"
-  - id: ex3
-    title: "A key that carries the tenant"
-  - id: ex4
-    title: "A quota is a wall, not a bill"
-  - id: ex5
-    title: "The probe that has to fail"

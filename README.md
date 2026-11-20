@@ -198,7 +198,7 @@ chapter1/ … chapter20/
   files/                 the demos, plus run_exN.ts
   files/exercises/       five exercise solutions and run_exercises.ts
   recordings/ runs/      chapter-specific saved responses, where the chapter has them
-  spec.yaml              the chapter's contract and gate strings
+  spec.yaml              the chapter's contract: title, invariant, gate
 fixtures/                recorded model turns shared by the early chapters
 lib/                     the OpenAI-compatible adapter and record/replay helper
 run_offline.sh            the offline runner described above

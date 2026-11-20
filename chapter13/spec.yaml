@@ -8,47 +8,6 @@ invariant: >
   for one use — and a run that stops for one must resume without doing the
   effect twice.
 
-artifacts:
-  - chapter13/token.ts                     # binding, signing, expiry, single use
-  - chapter13/machine.ts                   # propose, approve, resume, execute
-  - chapter13/world.ts                     # the effects log and its idempotency keys
-  - chapter13/scenarios.ts                 # ten ways an approval goes wrong
-  - chapter13/runs/a1.json                 # live: the model writes an approval request
-  - chapter13/files/00_record.ts           # records the live approval request
-  - chapter13/files/01_one_approval.ts     # propose, approve, resume, execute
-  - chapter13/files/02_scenarios.ts        # ten scenarios, ten verdicts
-  - chapter13/files/03_tamper.ts           # the four ways a token is refused
-  - chapter13/files/04_crash.ts            # exactly once, at every crash point
-  - chapter13/files/05_expiry.ts           # a clock, and an approval that goes stale
-  - chapter13/files/06_audit.ts            # the chain, as a record
-  - chapter13/files/run_ex13.ts            # assertions
-  - chapter13/files/exercises/*.ts         # five exercises + runner
-  - chapter13/images/chain.png             # proposal, token, resume, effect
-  - chapter13/images/states.png            # four states, five events
-  - chapter13/images/crash.png             # the crash points around one effect
-  - chapter13/images/record.png            # the fields a reviewer reads
-
-structure:
-  - Theoretical Foundations
-  - Basic Code Example
-  - Common Pitfalls
-  - Advanced Application Implementation
-  - How to run it
-  - Reading a Transcript
-  - Practical Exercises
-  - Solutions to the exercises
-  - What this chapter established
-
-multi_file_exercise:
-  id: ex3
-  title: "A token, a run and a clock"
-  files: [ex3_token.ts, ex3_runs.ts, ex3_run.ts]
-  why: >
-    ex3_token.ts is pure: it binds a payload to a run and a key and verifies it,
-    with no clock and no store. ex3_runs.ts owns the effect: it holds run state
-    and the used-token set. ex3_run.ts is the wiring and the scenario table. The
-    binding can be tested without a run, which is the seam.
-
 gates:
   harness: "node chapter13/files/run_ex13.ts"
   harness_expected: "41/41 checks passed"
@@ -56,19 +15,3 @@ gates:
   exercises_expected: "44/44 exercise checks passed"
   listings: "python3 tools/check_listings.py chapter13"
   words: "python3 tools/check_words.py chapter13"
-
-words: { target: 17000, floor: 10900, actual: 19023 }
-listing_count: 19
-figure_count: 4
-
-exercises:
-  - id: ex1
-    title: "A token that is bound"
-  - id: ex2
-    title: "The states a run can be in"
-  - id: ex3
-    title: "A token, a run and a clock"
-  - id: ex4
-    title: "Exactly once, at every crash point"
-  - id: ex5
-    title: "What makes an approval request good"

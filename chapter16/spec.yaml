@@ -7,45 +7,6 @@ invariant: >
   become a fixture is a failure the suite will catch again, and the ledger of
   what was converted is the only honest measure of a test suite's coverage.
 
-artifacts:
-  - chapter16/incidents.ts                 # ten incidents and the artefacts each one owes
-  - chapter16/ledger.ts                    # coverage, conversion, escapes
-  - chapter16/cycle.ts                     # twelve weeks, with and without a fixture policy
-  - chapter16/book.ts                      # the book's own contracts, read from spec files
-  - chapter16/files/01_one_incident.ts     # one incident, five artefacts
-  - chapter16/files/02_ledger.ts           # ten incidents, one ledger
-  - chapter16/files/03_cycle.ts            # twelve weeks, two policies
-  - chapter16/files/04_staleness.ts        # a fixture that no longer matches the traffic
-  - chapter16/files/05_book.ts             # the book's ledger, from its own specs
-  - chapter16/files/06_final_run.ts        # what a stranger runs
-  - chapter16/files/run_ex16.ts            # assertions
-  - chapter16/files/exercises/*.ts         # five exercises + runner
-  - chapter16/images/pipeline.png          # incident to artefacts
-  - chapter16/images/escapes.png           # twelve weeks, two policies
-  - chapter16/images/stale.png             # fixtures that stopped failing
-  - chapter16/images/map.png               # the book's sixteen claims
-
-structure:
-  - Theoretical Foundations
-  - Basic Code Example
-  - Common Pitfalls
-  - Advanced Application Implementation
-  - How to run it
-  - Reading a Transcript
-  - Practical Exercises
-  - Solutions to the exercises
-  - What this chapter established
-
-multi_file_exercise:
-  id: ex3
-  title: "A ledger and a cycle"
-  files: [ex3_ledger.ts, ex3_cycle.ts, ex3_run.ts]
-  why: >
-    ex3_ledger.ts is pure: incidents and artefacts in, coverage and escapes out,
-    with no weeks and no policy. ex3_cycle.ts owns the effect: it runs the weeks
-    and applies the conversion policy. ex3_run.ts is the wiring and the table.
-    The arithmetic can be tested with three incidents, which is the seam.
-
 gates:
   harness: "node chapter16/files/run_ex16.ts"
   harness_expected: "39/39 checks passed"
@@ -53,19 +14,3 @@ gates:
   exercises_expected: "34/34 exercise checks passed"
   listings: "python3 tools/check_listings.py chapter16"
   words: "python3 tools/check_words.py chapter16"
-
-words: { target: 17000, floor: 10900, actual: 18072 }
-listing_count: 18
-figure_count: 4
-
-exercises:
-  - id: ex1
-    title: "What an incident owes"
-  - id: ex2
-    title: "Coverage you can count"
-  - id: ex3
-    title: "A ledger and a cycle"
-  - id: ex4
-    title: "A fixture that has gone stale"
-  - id: ex5
-    title: "The book's own ledger"

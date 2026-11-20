@@ -9,29 +9,6 @@ invariant: >
   repair loop is bounded by a budget measured in turns and characters, and the
   published chapter contains every listing byte for byte.
 
-artifacts:
-  - chapter2/files/schema.ts             # validator, coerce, signature
-  - chapter2/files/agent2.ts             # the loop with a schema and a repair budget
-  - chapter2/files/tools.ts              # four invoice tools with nested schemas
-  - chapter2/files/01_nested_schema.ts   # eight issues, eight paths
-  - chapter2/files/02_descriptions.ts    # vague vs precise menu
-  - chapter2/files/03_repair_loop.ts     # refusal → lookup → valid call
-  - chapter2/files/04_invoice_intake.ts  # three invoices, three outcomes
-  - chapter2/files/05_shipments.ts       # the same contract, second domain
-  - chapter2/files/run_ex2.ts            # 38 assertions
-  - chapter2/files/exercises/*.ts        # five exercises, solutions, runner
-  - chapter2/images/*.png                # contract layers, repair loop, invoice decisions
-
-structure:
-  - Theoretical Foundations
-  - Basic Code Example
-  - Common Pitfalls
-  - Advanced Application Implementation
-  - How to run it
-  - Reading a Transcript
-  - Practical Exercises         # requirements only: no code, no figures, no commands
-  - Solutions to the exercises  # per exercise: whole file, "How to run it", analysis
-
 gates:
   harness: "node chapter2/files/run_ex2.ts"
   harness_expected: "38/38 checks passed"
@@ -39,7 +16,3 @@ gates:
   exercises_expected: "32/32 exercise checks passed"
   listings: "python3 tools/check_listings.py chapter2"
   listings_expected: "byte for byte"
-
-words:
-  target: 40000
-  floor: 12000

@@ -9,34 +9,6 @@ invariant: >
   what the server does not offer (and what it may not do), and survives a
   server that lies, breaks or disappears.
 
-artifacts:
-  - chapter3/mcp/server.ts          # warehouse server: 4 tools (one conditional), 1 resource
-  - chapter3/mcp/docs-server.ts     # second domain: documents, same protocol
-  - chapter3/mcp/client.ts          # JSON-RPC client: initialize, tools/list, tools/call
-  - chapter3/mcp/schema.ts          # JSON Schema -> our Schema subset translator
-  - chapter3/agent3.ts              # menu built from tools/list, capability scoping
-  - chapter3/files/01_discover.ts   # basic: list a server's tools and print the menu
-  - chapter3/files/02_call.ts       # calling one tool, with a real refusal
-  - chapter3/files/03_scope.ts      # a scoping policy: allow/deny per capability
-  - chapter3/files/04_resilience.ts # server dies mid-run, retries, degraded answer
-  - chapter3/files/05_live_mcp.ts   # real model over MCP, recorded
-  - chapter3/files/06_two_servers.ts # prefixes, per-server policy, isolation
-  - chapter3/files/07_live_two.ts    # one task across two servers, recorded
-  - chapter3/files/run_ex3.ts       # harness
-  - chapter3/files/exercises/*.ts   # five exercises + runner
-  - chapter3/images/*.png           # protocol lifecycle, scoping matrix, failure taxonomy
-
-structure:
-  - Theoretical Foundations
-  - Basic Code Example
-  - Common Pitfalls
-  - Advanced Application Implementation
-  - How to run it
-  - Reading a Transcript
-  - Practical Exercises       # requirements only
-  - Solutions to the exercises
-  - What this chapter established
-
 gates:
   harness: "node chapter3/files/run_ex3.ts"
   harness_expected: "38/38 checks passed"
@@ -45,38 +17,3 @@ gates:
   listings: "python3 tools/check_listings.py chapter3"
   live: "node chapter3/files/05_live_mcp.ts"
   live_budget_calls: 10
-
-words: { target: 17000, floor: 10900, actual: 12877 }
-
-exercises:
-  - id: ex1
-    title: "A tool the server hides until you open a document"
-    real_world: "capability discovery under a precondition"
-  - id: ex2
-    title: "Scope a server to three tools and prove the fourth is refused"
-    real_world: "least privilege on a third-party server"
-  - id: ex3
-    title: "Translate a JSON Schema you have never seen"
-    real_world: "schemas from a server you do not control"
-  - id: ex4
-    title: "Survive a server that closes the pipe mid-call"
-    real_world: "reconnect without double-executing a refund"
-  - id: ex5
-    title: "Reject a tool result that is not the shape it promised"
-    real_world: "a server that lies about its own contract"
-
-figures:
-  - "protocol lifecycle: initialize → initialized → tools/list → tools/call → result"
-  - "scoping matrix: role × capability, and what is refused before the wire"
-  - "failure taxonomy: transport, protocol, capability, payload"
-
-decisions:
-  - id: hand-written-mcp
-    choice: "the server and the client in this chapter are written by hand, JSON-RPC 2.0 over stdio, no SDK"
-    because:
-      - "the chapter is about the protocol boundary: framing, handshake, capability discovery, refusal"
-      - "a reader who has implemented initialize and tools/list can debug a server they did not write"
-      - "the SDK hides exactly the layer this chapter exists to teach"
-    cost: "about 400 lines that production code would import"
-    when_not: "in production, use @modelcontextprotocol/sdk; it tracks the spec, handles framing and transports"
-    must_appear_in: "Theoretical Foundations, as 'Why hand-written, and when not to'"
